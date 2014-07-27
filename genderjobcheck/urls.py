@@ -1,12 +1,9 @@
 from django.conf.urls import patterns, include, url
+from django.views.decorators.csrf import csrf_exempt
 
-from django.contrib import admin
-admin.autodiscover()
+import views
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'genderjobcheck.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
-
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', views.home),
+    url(r'^assess$', csrf_exempt(views.assessJobAd))
 )

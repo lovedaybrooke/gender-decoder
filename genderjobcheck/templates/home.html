@@ -1,0 +1,12 @@
+{% extends "basic-layout.html" %}
+
+   	{% block maincontent %}
+		<p>Some information on what this is</p>
+		<p>Some information on how to use this</p>
+		<form action="/assess" method="post">
+		{% csrf_token %}
+		<label for="adtext">Paste your job ad below.</label>
+		<textarea name="adtext" id="adtext" cols="25" rows="3"></textarea>
+		<input type="submit" value="submit" />
+		</form>
+    {% endblock %}
