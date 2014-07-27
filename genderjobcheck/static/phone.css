@@ -1,0 +1,49 @@
+div.header {
+	background-color: #706482;
+	padding: 20px 10px;
+}
+
+h1 {
+	font-size: 26px;
+	margin: 0;
+	letter-spacing: 1px;
+}
+
+h2 {
+	font-size: 20px;
+	letter-spacing: 1px;
+}
+
+h3 {
+	font-size: 18px;
+	margin-top: 10px;
+}
+
+h4 {
+	font-size: 16px;
+}
+
+ul {
+	margin-top: 10px;
+}
+
+div.main-content, div.footer {
+	width: 300px;
+}
+
+p {
+	font-size: 16px;
+	line-height: 1.3em;
+}
+
+label {
+	margin: 20px 0px 5px 0px;
+}
+
+textarea {
+    width:300px;
+}
+
+div.footer p {
+	font-size: 15px;
+}
