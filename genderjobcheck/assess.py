@@ -33,12 +33,12 @@ def assess(ad_text):
         if len(masculine_coded_words) > len(feminine_coded_words):
             result = "masculine-coded"
     
-    if result[-14:-13] == "f":
+    if "feminine" in result:
         explanation = ("This job ad uses more words that are stereotypically feminine "
             "than words that are stereotypically masculine. Fortunately, the research "
             "suggests this will have only a slight effect on how appealing the job is "
             "to men, and will encourage women applicants.")
-    elif result[-15:-14] == "m":
+    elif "masculine" in result:
         explanation = ("This job ad uses more words that are stereotypically masculine "
             "than words that are stereotypically feminine. It risks putting women off "
             "applying, but will probably encourage men to apply.")
