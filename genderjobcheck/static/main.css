@@ -1,13 +1,13 @@
 body {
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	margin: 0;
-	background-color: #FCFCF7;
+	background-color: white;
 	color: #5E5E5E;
 }
 
 
 div.header {
-	background-color: #7DC58E;
+	background-color: #706482;
 	padding: 40px 20px;
 }
 
@@ -74,23 +74,21 @@ input, #again {
 	margin: 20px auto;
 	font-size: 20px;
 	color: white;
-    border: 1px solid #5D946A;
-    background: #7DC58E;
+    border: 1px solid #5D536D;
+    background: #706482;
     display: block;
 }
 input:hover, #again.hover {
-    border: 1px solid #5D946A;
-    background: #6CAC7B;
-	color: #FCFCF7;
+    border: 1px solid #5D536D;
+    background: #635874;
 }
 .button {
-    border: 1px solid #5D946A;
-    background: #7DC58E;
+    border: 1px solid #5D536D;
+    background: #706482;
 }
 .button:hover {
-    border: 1px solid #5D946A;
-    background: #6CAC7B;
-	color: #FCFCF7;
+    border: 1px solid #5D536D;
+    background: #635874;
 }
 
 div.footer p {
