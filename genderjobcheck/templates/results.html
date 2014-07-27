@@ -4,7 +4,7 @@
 		<h2>Results</h2>
 		<h4>This advert is <strong>{{ result }}</strong></h4>
 		<p>{{ explanation }}</p>
-		<p>Of course, there are plenty of other factors that affect the diversity of applicants for this role, and of the people who end up being hired. These include the company's reputation for inclusiveness, its culture and the behaviour and prejudices (both implicit and explicit) of the interviewers.</p>
+		<p>Of course, there are plenty of other factors that affect the diversity of applicants for this role, and of the people who end up being hired. These include the company's reputation for inclusiveness, its culture, and the behaviour and prejudices (both conscious and unconscious) of the interviewers.</p>
 		<div id="masculine">
 			<h3>Masculine-coded words</h3>
 			{% if masculine_coded_words %}
@@ -13,6 +13,8 @@
 				<li>{{ word }}</li>
 				{% endfor %}
 			</ul>
+			{% else %}
+			<p>No masculine-coded words were found.</p>
 			{% endif %}
 		</div>
 		<div id="feminine">
@@ -23,7 +25,10 @@
 				<li>{{ word }}</li>
 				{% endfor %}
 			</ul>
+			{% else %}
+			<p>No masculine-coded words were found.</p>
 			{% endif %}
 		</div>
-		<a href="/">Check another job ad</a>
+		<div id="">
+		<a id="again" href="/">Check another job ad</a>
     {% endblock %}
