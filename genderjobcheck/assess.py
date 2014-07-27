@@ -13,22 +13,25 @@ def assess(ad_text):
         for word in wordlists.feminine_coded_words
         if adword[:len(word)] == word]
     
-    if not masculine_coded_words:
+    if feminine_coded_words and not masculine_coded_words:
         result = "strongly feminine-coded"
-    if not len(feminine_coded_words):
+    elif masculine_coded_words and not feminine_coded_words:
         result = "strongly masculine-coded"
-    if len(feminine_coded_words) == len(masculine_coded_words):
+    elif not masculine_coded_words and not feminine_coded_words:
         result = "neutral"
-    if ((len(feminine_coded_words) / len(masculine_coded_words)) >= 2 and 
-        len(feminine_coded_words) > 5):
-        result = "strongly feminine-coded"
-    if ((len(masculine_coded_words) / len(feminine_coded_words)) >= 2 and 
-        len(masculine_coded_words) > 5):
-        result = "strongly masculine-coded"
-    if len(feminine_coded_words) > len(masculine_coded_words):
-        result = "feminine-coded"
-    if len(masculine_coded_words) > len(feminine_coded_words):
-        result = "masculine-coded"
+    else: 
+        if len(feminine_coded_words) == len(masculine_coded_words):
+            result = "neutral"
+        if ((len(feminine_coded_words) / len(masculine_coded_words)) >= 2 and 
+            len(feminine_coded_words) > 5):
+            result = "strongly feminine-coded"
+        if ((len(masculine_coded_words) / len(feminine_coded_words)) >= 2 and 
+            len(masculine_coded_words) > 5):
+            result = "strongly masculine-coded"
+        if len(feminine_coded_words) > len(masculine_coded_words):
+            result = "feminine-coded"
+        if len(masculine_coded_words) > len(feminine_coded_words):
+            result = "masculine-coded"
     
     if result[-14:-13] == "f":
         explanation = ("This job ad uses more words that are stereotypically feminine "
