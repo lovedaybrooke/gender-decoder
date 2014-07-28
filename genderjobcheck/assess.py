@@ -53,6 +53,6 @@ def assess(ad_text):
 
     return {"result": result,
             "explanation": explanation,
-            "masculine_coded_words": list(set(masculine_coded_words)),
-            "feminine_coded_words": list(set(feminine_coded_words))
+            "masculine_coded_words": masculine_coded_words,
+            "feminine_coded_words": feminine_coded_words
             }
