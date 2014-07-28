@@ -11,7 +11,7 @@ def home(request):
 @csrf_exempt
 def assessJobAd(request):
     if request.method == 'POST':
-        ad_text = request.POST["adtext"]
+        ad_text = request.POST["texttotest"]
         if len(ad_text):
             results = assess.assess(ad_text)        
             return render(request, 'results.html', results
