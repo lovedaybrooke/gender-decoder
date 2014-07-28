@@ -7,11 +7,11 @@ def assess(ad_text):
     
     masculine_coded_words = [adword for adword in ad_text
         for word in wordlists.masculine_coded_words
-        if adword[:len(word)] == word]
+        if adword.startswith(word)]
     
     feminine_coded_words = [adword for adword in ad_text
         for word in wordlists.feminine_coded_words
-        if adword[:len(word)] == word]
+        if adword.startswith(word)]
     
     if feminine_coded_words and not masculine_coded_words:
         result = "strongly feminine-coded"
