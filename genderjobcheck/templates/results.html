@@ -6,7 +6,7 @@
 		<p>{{ explanation }}</p>
 		<p>Of course, there are plenty of other factors that affect the diversity of applicants for this role, and of the people who end up being hired. These include the company's reputation for inclusiveness, its culture, and the behaviour and prejudices (both conscious and unconscious) of the interviewers.</p>
 		<div id="masculine">
-			<h3>Masculine-coded words</h3>
+			<h3>Masculine-coded words in this ad</h3>
 			{% if masculine_coded_words %}
 			<ul>
 				{% for word in masculine_coded_words %}
@@ -18,7 +18,7 @@
 			{% endif %}
 		</div>
 		<div id="feminine">
-			<h3>Feminine-coded words</h3>
+			<h3>Feminine-coded words in this ad</h3>
 			{% if feminine_coded_words %}
 			<ul>
 				{% for word in feminine_coded_words %}
