@@ -42,6 +42,10 @@ def assess(ad_text):
         explanation = ("This job ad uses more words that are stereotypically masculine "
             "than words that are stereotypically feminine. It risks putting women off "
             "applying, but will probably encourage men to apply.")
+    elif not masculine_coded_words and not feminine_coded_words:
+        explanation = ("This job ad doesn't use any words that are stereotypically "
+            "masculine and stereotypically feminine. It probably won't be off-putting "
+            "to men or women applicants.")
     else:
         explanation = ("This job ad uses an equal number of words that are "
             "stereotypically masculine and stereotypically feminine. It probably won't "
