@@ -45,7 +45,6 @@ feminine_coded_words = [
 	"warm",
 	"whin",
 	"enthusias",
-	"innovat",
 	"inclusive",
 	"yield",
 	"shar"]
