@@ -5,5 +5,6 @@ import views
 
 urlpatterns = patterns('',
     url(r'^$', views.home),
+    url(r'^about$', views.about),
     url(r'^assess$', csrf_exempt(views.assessJobAd))
 )

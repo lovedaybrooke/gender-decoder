@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 
 import assess
+import wordlists
 
 def home(request):
     if request.method == 'GET':
@@ -18,3 +19,10 @@ def assessJobAd(request):
                 )
         else:
            	return redirect('/')
+           	
+def about(request):
+    if request.method == 'GET':
+        return render(request, 'about.html',
+        	{"masculine_coded_words": wordlists.masculine_coded_words,
+    		"feminine_coded_words": wordlists.feminine_coded_words}
+    		)
