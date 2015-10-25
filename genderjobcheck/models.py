@@ -101,7 +101,7 @@ class JobAd(models.Model):
                 "It probably won't be off-putting to men or women "
                 "applicants.")
 
-        return {"coding": self.coding,
+        return {"job_ad": self,
             "masculine_coded_words": self.masculine_coded_words.split(","),
             "feminine_coded_words": self.feminine_coded_words.split(","),
             "explanation": explanation}

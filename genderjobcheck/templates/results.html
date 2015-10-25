@@ -2,7 +2,7 @@
 
    	{% block maincontent %}
 		<h2>Results</h2>
-		<h4>This advert is <strong>{{ coding }}</strong></h4>
+		<h4>This advert is <strong>{{ job_ad.coding }}</strong></h4>
 		<p>{{ explanation }}</p>
 		<p>Of course, there are plenty of other factors that affect the diversity of applicants for this role, and of the people who end up being hired. These include the company's reputation for inclusiveness, its culture, and the behaviour and prejudices (both conscious and unconscious) of the interviewers.</p>
 		<div id="masculine">
@@ -31,7 +31,12 @@
 			{% endif %}
 			<p><a href="/about#feminine">See the full list of feminine-coded words</a></p>
 		</div>
-		<div id="">
-		<a id="again" href="/">Check another job ad</a>
+		<div id="share">
+		<h3>Share this result</h3>
+		<p><a href="/results/{{ job_ad.hash }}">http://genderdecoder.katmatfield.com/results/{{ job_ad.hash }}</a></p>
 		</div>
-    {% endblock %}
+		<div id="results">
+		<h3>Job advert text</h3>
+		<textarea name="texttotest" id="texttotest" cols="75" rows="10">{{ job_ad.text }}</textarea>
+		</div>
+	    {% endblock %}
