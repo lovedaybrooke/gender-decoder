@@ -1,0 +1,13 @@
+{% extends "basic-layout.html" %}
+
+    {% block maincontent %}
+        <h3>Check job adverts for subtle bias</h3>
+        <p>Without realising it, we all use language that is subtly ‘gender-coded’. Society has certain expectations of what men and women are like, and how they differ, and this seeps into the language we use.</p>
+        <p>Research has shown that, when this biased language creeps into job adverts, it puts women off applying for jobs that are advertised with masculine-coded language.<a href="#research">*</a></p>
+        <form action="/job-adverts/assess" method="post">
+        {% csrf_token %}
+        <label for="texttotest">Paste your job ad here</label>
+        <textarea name="texttotest" id="texttotest" cols="75" rows="20"></textarea>
+        <input type="submit" value="Check this ad" class="button"/>
+        </form>
+    {% endblock %}

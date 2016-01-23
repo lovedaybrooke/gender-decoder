@@ -1,0 +1,66 @@
+{% extends "basic-layout.html" %}
+
+    {% block maincontent %}
+        <h2>Results</h2>
+        <p>The original research into reference letters was based on a comparison between letters for applicants of different genders. So, the best way to use this tool is probably to compare the results for different reference letters, rather than consider one letter in isolation.</p>
+        <p>It's also important to remember that both the studies had a relative small sample size, and both focused on applicants to faculty posts in a one or two departments at one university. <a href="/about#ref-letters">More about the original research</a></p>
+        <p>With these caveats, here are your results:</p>
+
+        <div id="outstanding">
+            <h3>Outstanding words</h3>
+            <p class="results">Outstanding words in this letter: {{ outstanding_count }} ({{ outstanding_ratio }} of all words)</p>
+            <p>{{ outstanding_explanation }}</p>
+            <p>Both studies found that men were more likely to be described as outstanding, despite there being no gender difference in the qualifications of the study participants.</p>  
+            <p>The first study found that an average of 0.7% of the words in the reference letters for men were in the 'outstanding' wordlist, compared to 0.6% for women. In the second study, letters for men had an average of 2.0 outstanding words, and letters for women had an average of 1.5.</p>
+            
+            
+            {% if outstanding_words %}
+            <h5>Outstanding words in this letter</h5>
+                <ul>
+                    {% for word in outstanding_words %}
+                    <li>{{ word }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+                <p><a href="/ref-letters/word-lists#outstanding">See the full list of outstanding words</a></p>
+        </div>
+
+        <div id="other_words">
+            <h3>Ability and grindstone words</h3>
+            <p class="results">Ability words in this letter: {{ ability_count }} ({{ ability_ratio }} of all words)<br/>
+            Grindstone words in this letter: {{ grindstone_count }} ({{ grindstone_ratio }} of all words)</p>
+
+            <p>{{ ability_grindstone_explanation }}</p>
+            <p>One research study found that woman applicants were more likely than men to be described as being hardworking, using 'grindstone' adjectives. The implication is that the woman's success has come from hard grind, rather than talent, unlike men's success.</p>
+            <p>However, the other study found no gender correlation for 'grindstone' adjectives. Instead, it found that applicants of any gender who were described as outstanding were more likely to be described with 'ability' adjectives than 'grindstone' adjectives. This suggests that achievement is more strongly associated with talent than hard work. As women are more likely than men to be seen as hard-working, this correlation may mean they are not expected to achieve as much.</p>
+
+            {% if ability_words %}            
+            <h5>Ability words in this letter</h5>
+                <ul>
+                    {% for word in ability_words %}
+                    <li>{{ word }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+                <p><a href="/ref-letters/word-lists#ability">See the full list of ability words</a></p>
+
+            {% if gindstone_words %}
+            <h5>Grindstone words in this letter</h5>
+                <ul>
+                    {% for word in grindstone_words %}
+                    <li>{{ word }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+                <p><a href="/ref-letters/word-lists#grindstone">See the full list of grindstone words</a></p>
+        </div>
+
+        <div id="share">
+            <h3>Share this result</h3>
+            <p><a href="/results/{{ job_ad.hash }}">http://genderdecoder.katmatfield.com/results/{{ ref_letter.hash }}</a></p>
+        </div>
+        <div id="results">
+            <h3>Reference letter text</h3>
+            <textarea name="texttotest" id="texttotest" cols="75" rows="10">{{ ref_letter.text }}</textarea>
+        </div>
+        {% endblock %}

@@ -1,0 +1,20 @@
+{% extends "basic-layout.html" %}
+
+    {% block maincontent %}
+        <h3>Check reference letters for subtle bias</h3>
+        <p>Without realising it, we all use language that is subtly ‘gender-coded’. Society has certain expectations of what men and women are like, and how they differ, and this seeps into the language we use.</p>
+        <p>Research has shown that this language can creep into reference letters. Women are less likely to be described as brilliant than men and, even if they are, more likely to have their success credited hard work rather than natural talent.<a href="#research">*</a></p>
+        <form action="/ref-letters/assess" method="post">
+        {% csrf_token %}
+        <label for="gender">This letter is for...</label>
+        <select id="gender" name="gender">
+            <option value="unknown" selected>....select a gender....</option>
+            <option value="woman">A woman</option>
+            <option value="man">A man</option>
+            <option value="other">Another gender</option>
+        </select>
+        <label for="texttotest">Paste your job ad here</label>
+        <textarea name="texttotest" id="texttotest" cols="75" rows="20"></textarea>
+        <input type="submit" value="Check this letter" class="button"/>
+        </form>
+    {% endblock %}

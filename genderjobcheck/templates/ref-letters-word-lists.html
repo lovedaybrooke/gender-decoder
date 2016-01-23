@@ -1,0 +1,34 @@
+{% extends "basic-layout.html" %}
+
+    {% block maincontent %}
+        <h2>Wordlists for reference letters</h2>
+        <p>Sources:</p>
+        <ul>
+        <li><a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2572075/">A Linguistic Comparison of Letters of Recommendation for Male and Female Chemistry and Biochemistry Job Applicants</a> by Toni Schmader, Jessica Whitehead, and Vicki H. Wysocki (Sex Roles. 2007; Vol 57(7-8), p509–514)</li>
+        <li><a href="http://advance.uci.edu/images/Color%20of%20Glass.pdf">Exploring the color of glass: letters of recommendation for female and male medical faculty</a> by Frances Trix and Carolyn Psenka (Discourse and Society. 2003; Vol 14, p191–220).</li>
+        </ul>
+        <div id="outstanding">
+            <h3>Outstanding words</h3>
+            <ul>
+                {% for word in outstanding_words %}
+                <li>{{ word }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="ability">
+            <h3>Ability words</h3>
+            <ul>
+                {% for word in ability_words %}
+                <li>{{ word }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="grindstone">
+            <h3>Grindstone words</h3>
+            <ul>
+                {% for word in grindstone_words %}
+                <li>{{ word }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endblock %}
