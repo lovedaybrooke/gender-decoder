@@ -183,7 +183,7 @@ class RefLetter(models.Model):
 
 
     def select_outstanding_explanation(self):
-        if self.outstanding_ratio >= 0.0007:
+        if self.outstanding_ratio >= 0.007:
              return  ("This reference letter describes the "
                 "applicant as outstanding about as much or more as the men's "
                 "reference letters in the original research.")
@@ -192,7 +192,7 @@ class RefLetter(models.Model):
                 "use any of the outstanding words we were looking for. "
                 "In the original research, this was more common for letters "
                 "about women applicants")
-        elif self.outstanding_ratio <= 0.0006:
+        elif self.outstanding_ratio <= 0.006:
             return  ("This reference letter describes the "
                 "applicant as outstanding about as much or less than the "
                 "women's reference letters in the original research.")
