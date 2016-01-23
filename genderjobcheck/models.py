@@ -187,15 +187,15 @@ class RefLetter(models.Model):
              return  ("This reference letter describes the "
                 "applicant as outstanding about as much or more as the men's "
                 "reference letters in the original research.")
-        elif self.outstanding_ratio <= 0.0006:
-            return  ("This reference letter describes the "
-                "applicant as outstanding about as much or less than the "
-                "women's reference letters in the original research.")
         elif self.outstanding_ratio == 0:
             return  ("This reference letter doesn't "
                 "use any of the outstanding words we were looking for. "
                 "In the original research, this was more common for letters "
                 "about women applicants")
+        elif self.outstanding_ratio <= 0.0006:
+            return  ("This reference letter describes the "
+                "applicant as outstanding about as much or less than the "
+                "women's reference letters in the original research.")
         else:
             return ("This reference letter describes the "
                 "applicant as outstanding less than the men's reference "
