@@ -1,5 +1,5 @@
 body {
-	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 	margin: 0;
 	background-color: white;
 	color: #5E5E5E;
@@ -20,7 +20,7 @@ h1 {
 }
 
 h2 {
-	font-weight: normal;
+	font-weight: 600;
 	text-align: center;
 	font-size: 30px;
 	letter-spacing: 1px;
@@ -28,8 +28,8 @@ h2 {
 
 h3 {
 	font-size: 20px;
-	font-weight: 500;
-	margin-top: 30px;
+	font-weight: 600;
+	margin-top: 40px;
 	margin-bottom: 10px;
 
 }
@@ -67,7 +67,7 @@ div#share {
 	color: #FFFFFF;
 	background-color: #706482;
 	padding: 16px;
-	margin: 30px 0px;
+	margin: 40px 0px;
 }
 
 div#share h3 {
@@ -79,7 +79,7 @@ div#share a {
 }
 
 p {
-	font-size: 17px;
+	font-size: 16px;
 	line-height: 1.5em;
 }
 
