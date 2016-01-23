@@ -82,32 +82,36 @@ class JobAd(models.Model):
                 self.coding = "masculine-coded"
 
     def results_dictionary(self):
+        return_dict = {"job_ad": self}
+        if self.masculine_coded_words:
+            return_dict["masculine_coded_words"] = self.masculine_coded_words.split(",")
+        if self.feminine_coded_words:
+            return_dict["feminine_coded_words"] = self.feminine_coded_words.split(",")
+
         if "feminine" in self.coding:
-            explanation = ("This job ad uses more words that are "
+            return_dict["explanation"] = ("This job ad uses more words that are "
                 "stereotypically feminine than words that are "
                 "stereotypically masculine. Fortunately, the research "
                 "suggests this will have only a slight effect on how "
                 "appealing the job is to men, and will encourage women "
                 "applicants.")
         elif "masculine" in self.coding:
-            explanation = ("This job ad uses more words that are "
+            return_dict["explanation"] = ("This job ad uses more words that are "
                 "stereotypically masculine than words that are "
                 "stereotypically feminine. It risks putting women off "
                 "applying, but will probably encourage men to apply.")
         elif not self.masculine_coded_words and not self.feminine_coded_words:
-            explanation = ("This job ad doesn't use any words that are "
+            return_dict["explanation"] = ("This job ad doesn't use any words that are "
                 "stereotypically masculine and stereotypically feminine. It "
                 "probably won't be off-putting to men or women applicants.")
         else:
-            explanation = ("This job ad uses an equal number of words that "
+            return_dict["explanation"] = ("This job ad uses an equal number of words that "
                 "are stereotypically masculine and stereotypically feminine. "
                 "It probably won't be off-putting to men or women "
                 "applicants.")
 
-        return {"job_ad": self,
-            "masculine_coded_words": self.masculine_coded_words.split(","),
-            "feminine_coded_words": self.feminine_coded_words.split(","),
-            "explanation": explanation}
+        return(return_dict)
+
 class RefLetter(models.Model):
     hash = models.CharField(max_length=16, unique=True)
     text = models.TextField()
