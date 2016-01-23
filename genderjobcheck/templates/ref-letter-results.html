@@ -8,7 +8,7 @@
 
         <div id="outstanding">
             <h3>Outstanding words</h3>
-            <p class="results">Outstanding words in this letter: {{ outstanding_count }} ({{ outstanding_ratio }} of all words)</p>
+            <h4 class="results">Outstanding words in this letter: {{ outstanding_count }} ({{ outstanding_ratio }} of all words)</h4>
             <p>{{ outstanding_explanation }}</p>
             <p>Both studies found that men were more likely to be described as outstanding, despite there being no gender difference in the qualifications of the study participants.</p>  
             <p>The first study found that an average of 0.7% of the words in the reference letters for men were in the 'outstanding' wordlist, compared to 0.6% for women. In the second study, letters for men had an average of 2.0 outstanding words, and letters for women had an average of 1.5.</p>
@@ -27,8 +27,8 @@
 
         <div id="other_words">
             <h3>Ability and grindstone words</h3>
-            <p class="results">Ability words in this letter: {{ ability_count }} ({{ ability_ratio }} of all words)<br/>
-            Grindstone words in this letter: {{ grindstone_count }} ({{ grindstone_ratio }} of all words)</p>
+            <h4 class="results">Ability words in this letter: {{ ability_count }} ({{ ability_ratio }} of all words)<br/>
+            Grindstone words in this letter: {{ grindstone_count }} ({{ grindstone_ratio }} of all words)</h4>
 
             <p>{{ ability_grindstone_explanation }}</p>
             <p>One research study found that woman applicants were more likely than men to be described as being hardworking, using 'grindstone' adjectives. The implication is that the woman's success has come from hard grind, rather than talent, unlike men's success.</p>
@@ -57,7 +57,7 @@
 
         <div id="share">
             <h3>Share this result</h3>
-            <p><a href="/results/{{ job_ad.hash }}">http://genderdecoder.katmatfield.com/results/{{ ref_letter.hash }}</a></p>
+            <p><a href="/ref-letter/results/{{ ref_letter.hash }}">http://genderdecoder.katmatfield.com/ref-letter/results/{{ ref_letter.hash }}</a></p>
         </div>
         <div id="results">
             <h3>Reference letter text</h3>
