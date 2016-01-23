@@ -2,12 +2,9 @@
 
    	{% block maincontent %}
 		<p>Without realising it, we all use language that is subtly ‘gender-coded’. Society has certain expectations of what men and women are like, and how they differ, and this seeps into the language we use. Think about “bossy” and “feisty”: we almost never use these words to describe men.</p>
-		<p>This linguistic gender-coding shows up in job adverts as well, and research has shown that it puts women off applying for jobs that are advertised with masculine-coded language.<a href="#research">*</a></p>
-		<p>This site is a quick way to check whether a job advert has the kind of subtle linguistic gender-coding that has this discouraging effect. <a href="/about">Find out more about how this works.</a></p>
-		<form action="/assess" method="post">
-		{% csrf_token %}
-		<label for="texttotest">Paste your job ad here</label>
-		<textarea name="texttotest" id="texttotest" cols="75" rows="20"></textarea>
-		<input type="submit" value="Check this ad" class="button"/>
+		<p>This linguistic gender-coding shows up in job adverts and reference letters, where it can discourage or disadvantage women applicants.</p>
+		<p>This site is a quick way to check whether a job advert or reference letter has the kind of subtle linguistic gender-coding that has this discouraging effect. <a href="/about">Find out more about how this works.</a></p>
+		<a class="button" href="/job-adverts"/>Check a job advert</a>
+		<a class="button" href="/ref-letters"/>Check a reference letter</a>
 		</form>
     {% endblock %}

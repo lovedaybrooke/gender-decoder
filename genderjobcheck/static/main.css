@@ -13,7 +13,6 @@ div.header {
 
 h1 {
 	font-weight: normal;
-	color: white;
 	text-align: center;
 	font-size: 40px;
 	margin: 0;
@@ -39,6 +38,12 @@ h4 {
 	font-size: 20px;
 	font-weight: normal;
 	text-align: center;
+}
+
+h5 {
+	font-size: 18px;
+	font-weight: 500;
+	margin: 20px 0px;
 }
 
 strong {
@@ -84,23 +89,6 @@ label {
 	font-weight: 500;
 }
 
-input, #again {
-	padding: 10px;
-	margin: 20px auto;
-	font-size: 20px;
-	color: white;
-    border: 1px solid #5D536D;
-    background: #706482;
-    display: block;
-}
-input:hover, #again.hover {
-    border: 1px solid #5D536D;
-    background: #635874;
-}
-.button {
-    border: 1px solid #5D536D;
-    background: #706482;
-}
 .button:hover {
     border: 1px solid #5D536D;
     background: #635874;
@@ -119,8 +107,34 @@ a, a:visited, a:hover {
 	color: #5E5E5E;
 }
 
-#again {
-	width: 240px;
+h1 a, h1 a:visited, h1 a:hover  {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+
+
+input, a.button {
+	padding: 10px;
+	margin: 20px auto;
+	font-size: 20px;
+	color: white;
+    border: 1px solid #5D536D;
+    background: #706482;
+    display: block;
+}
+input:hover, .button.hover {
+    border: 1px solid #5D536D;
+    background: #635874;
+}
+.button {
+    border: 1px solid #5D536D;
+    background: #706482;
+}
+
+a.button {
+	width: 280px;
+	padding: 18px 0px;
+	margin-top: 20px;
 	text-align: center;
 	text-decoration: none;
 }
