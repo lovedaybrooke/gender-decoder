@@ -3,10 +3,15 @@ div.header {
 	padding: 20px 10px;
 }
 
-h1 {
+h1 a {
 	font-size: 26px;
 	margin: 0;
 	letter-spacing: 1px;
+	text-align: center;
+}
+
+h1  {
+	text-decoration: none;
 }
 
 h2 {
@@ -16,7 +21,7 @@ h2 {
 
 h3 {
 	font-size: 18px;
-	margin-top: 10px 0px;
+	margin-top: 15px 0px;
 }
 
 h4 {

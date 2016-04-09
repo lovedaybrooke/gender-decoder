@@ -13,11 +13,15 @@ div.header {
 
 h1 {
 	font-weight: normal;
-	color: white;
 	text-align: center;
 	font-size: 40px;
 	margin: 0;
 	letter-spacing: 2px;
+}
+
+h1 a {
+	text-decoration: none;
+	color: white !important;
 }
 
 h2 {
@@ -30,7 +34,7 @@ h2 {
 h3 {
 	font-size: 20px;
 	font-weight: 500;
-	margin-top: 30px;
+	margin-top: 40px;
 	margin-bottom: 10px;
 
 }
@@ -120,6 +124,10 @@ hr {
 
 a, a:visited, a:hover {
 	color: #5E5E5E;
+}
+
+a.reference {
+	font-size: 13px;
 }
 
 #again {
