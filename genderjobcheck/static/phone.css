@@ -16,7 +16,7 @@ h2 {
 
 h3 {
 	font-size: 18px;
-	margin-top: 10px;
+	margin-top: 10px 0px;
 }
 
 h4 {
@@ -24,11 +24,26 @@ h4 {
 }
 
 ul {
-	margin-top: 10px;
+	margin-top: 0px;
 }
 
 div.main-content, div.footer {
 	width: 300px;
+}
+
+div#share {
+    color: #FFFFFF;
+    background-color: #706482;
+    padding: 10px;
+    margin: 20px 0px;
+}
+
+div#share h3 {
+    margin-top: 8px
+}
+
+div#share a {
+    color: #FFFFFF;
 }
 
 p {
