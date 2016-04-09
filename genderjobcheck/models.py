@@ -59,10 +59,14 @@ class JobAd(models.Model):
                 if adword.startswith(word)]
             self.feminine_coded_words = (",").join(feminine_coded_words)
 
-            if feminine_coded_words and not masculine_coded_words:
+            if len(feminine_coded_words) > 2 and not masculine_coded_words:
                 self.coding = "strongly feminine-coded"
-            elif masculine_coded_words and not feminine_coded_words:
+            elif feminine_coded_words and not masculine_coded_words:
+                self.coding = "feminine-coded"
+            elif len(masculine_coded_words) > 2 and not feminine_coded_words:
                 self.coding = "strongly masculine-coded"
+            elif masculine_coded_words and not feminine_coded_words:
+                self.coding = "masculine-coded"
             elif not masculine_coded_words and not feminine_coded_words:
                 self.coding = "neutral"
             else:
