@@ -101,4 +101,4 @@ masculine_coded_words = [
     "selfsufficien",
     "stubborn",
     "superior",
-    "unreasonab"]
+    "unreasonable"]
