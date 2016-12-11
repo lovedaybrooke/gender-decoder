@@ -1,0 +1,137 @@
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 0;
+    background-color: white;
+    color: #5E5E5E;
+}
+
+
+div.header {
+    background-color: #706482;
+    padding: 40px 20px;
+}
+
+h1 {
+    font-weight: normal;
+    text-align: center;
+    font-size: 40px;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+h1 a {
+    text-decoration: none;
+    color: white !important;
+}
+
+h2 {
+    font-weight: normal;
+    text-align: center;
+    font-size: 30px;
+    letter-spacing: 1px;
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 40px;
+    margin-bottom: 10px;
+
+}
+
+h4 {
+    font-size: 20px;
+    font-weight: normal;
+    text-align: center;
+}
+
+strong {
+    font-weight: 500;
+}
+
+ul {
+    margin-top: 0px;
+}
+
+li {
+    line-height: 1.4em;
+}
+
+div.main-content, div.footer {
+    width: 560px;
+    margin: 20px auto;
+}
+
+div#share {
+    color: #FFFFFF;
+    background-color: #706482;
+    padding: 16px;
+    margin: 30px 0px;
+}
+
+div#share h3 {
+    margin-top: 8px
+}
+
+div#share a {
+    color: #FFFFFF;
+}
+
+
+p {
+    font-size: 17px;
+    line-height: 1.5em;
+}
+
+
+
+label {
+    display: block;
+    margin: 30px 0px 10px 0px;
+    font-weight: 500;
+}
+
+input, #again {
+    padding: 10px;
+    margin: 20px auto;
+    font-size: 20px;
+    color: white;
+    border: 1px solid #5D536D;
+    background: #706482;
+    display: block;
+}
+input:hover, #again.hover {
+    border: 1px solid #5D536D;
+    background: #635874;
+}
+.button {
+    border: 1px solid #5D536D;
+    background: #706482;
+}
+.button:hover {
+    border: 1px solid #5D536D;
+    background: #635874;
+}
+
+div.footer p {
+    margin: 1em auto;
+    font-size: 15px;
+}
+
+hr {
+    margin: 40px 0px;
+}
+
+a, a:visited, a:hover {
+    color: #5E5E5E;
+}
+
+a.reference {
+    font-size: 13px;
+}
+
+#again {
+    width: 240px;
+    text-align: center;
+    text-decoration: none;
+}

@@ -1,1 +1,1 @@
-web: gunicorn genderjobcheck.wsgi --log-file -
+web: gunicorn runsite:app
