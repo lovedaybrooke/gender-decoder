@@ -33,9 +33,9 @@ class JobAd(db.Model):
         cleaner_text = ''.join([i if ord(i) < 128 else ' '
             for i in self.jobAdText])
         cleaner_text = re.sub("[\\s]", " ", cleaner_text, 0, 0)
-        cleaned_word_list = re.sub("[\.\t\,\:;\(\)\.]", "", cleaner_text,
+        cleaned_word_list = re.sub("[\.\t\,\:;\(\)\./&]", " ", cleaner_text,
             0, 0).split(" ")
-        return [ad for ad in cleaned_word_list if ad != ""]
+        return [word.lower() for word in cleaned_word_list if word != ""]
 
     def extract_coded_words(self, advert_word_list):
         words, count = self.find_and_count_coded_words(advert_word_list,
