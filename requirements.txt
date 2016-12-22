@@ -19,3 +19,5 @@ sqlparse==0.2.2
 Tempita==0.5.2
 Werkzeug==0.11.11
 WTForms==2.1
+requests==2.12.4
+wheel==0.24.0

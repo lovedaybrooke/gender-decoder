@@ -1,7 +1,7 @@
 from flask import Flask
 from flask import render_template, redirect, request
 from wtforms.validators import ValidationError
-
+import datetime
 from app import app, db
 from forms import JobAdForm
 from models import JobAd
@@ -34,6 +34,17 @@ def results(ad_hash):
         feminine_coded_words=feminine_coded_words,
         explanation=explanations[job_ad.coding])
 
+@app.route('/upload', methods=['POST'])
+def upload():
+    content = request.get_json()
+    all_hashes = [ad.hash for ad in JobAd.query.all()]
+    if content["hash"] not in all_hashes:
+        job_ad = JobAd(content["text"])
+        job_ad.hash = content["hash"]
+        job_ad.date = datetime.datetime.strptime(content["date"], "%Y-%m-%d")
+        db.session.add(job_ad)
+        db.session.commit()
+    return render_template('about.html')
 
 @app.errorhandler(404)
 def page_not_found(error):
