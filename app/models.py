@@ -18,11 +18,18 @@ class JobAd(db.Model):
     coding = db.Column(db.String())
 
     def __init__(self, jobAdText):
-        self.hash = hexlify(os.urandom(8))  # need to make sure it's unique
+        self.make_hash()
         self.jobAdText = jobAdText
         self.analyse()
         db.session.add(self)
         db.session.commit()
+
+    def make_hash(self):
+        while True:
+            hash = hexlify(os.urandom(8))
+            if hash not in [ad.hash for ad in JobAd.query.all()]:
+                self.hash = hash
+                break
 
     def analyse(self):
         word_list = self.clean_up_word_list()
