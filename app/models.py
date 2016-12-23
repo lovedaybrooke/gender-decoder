@@ -21,6 +21,7 @@ class JobAd(db.Model):
         self.make_hash()
         self.jobAdText = jobAdText
         self.analyse()
+        
         db.session.add(self)
         db.session.commit()
 
@@ -84,3 +85,4 @@ class JobAd(db.Model):
         else:
             feminine_coded_words = self.feminine_coded_words.split(",")
         return masculine_coded_words, feminine_coded_words
+
