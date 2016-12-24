@@ -34,18 +34,22 @@ class TestCase(unittest.TestCase):
             ['sharing', 'ambitious'])
         slash = JobAd(u"Sharing/ambitious")
         self.assertEqual(slash.clean_up_word_list(), ['sharing', 'ambitious'])
-        hyphen = JobAd(u"Sharing, co-operative")
+        hyphen = JobAd(u"Sharing, co-operative, 'servant-leader'")
         self.assertEqual(hyphen.clean_up_word_list(),
-            ['sharing', 'co-operative'])
+            ['sharing', 'co-operative', 'servant', 'leader'])
         mdash = JobAd(u"Sharing—ambitious")
         self.assertEqual(mdash.clean_up_word_list(), ['sharing', 'ambitious'])
-        bracket = JobAd(u"Sharing(ambitious")
-        self.assertEqual(bracket.clean_up_word_list(), ['sharing', 'ambitious'])
+        bracket = JobAd(u"Sharing(ambitious) and (leader)")
+        self.assertEqual(bracket.clean_up_word_list(), ['sharing', 'ambitious',
+            'and', 'leader'])
         space = JobAd(u"Sharing ambitious ")
         self.assertEqual(space.clean_up_word_list(), ['sharing', 'ambitious'])
         amp = JobAd(u"Sharing&ambitious, empathy&kindness,")
         self.assertEqual(amp.clean_up_word_list(),
             ['sharing', 'ambitious', 'empathy', 'kindness'])
+        atandquestion = JobAd(u"Lead Developer Who is Connect@HBS? We ")
+        self.assertEqual(atandquestion.clean_up_word_list(),
+            ['lead', 'developer', 'who', 'is', 'connect', 'hbs', 'we'])
 
     def test_extract_coded_words(self):
         j1 = JobAd(u"Ambition:competition–decisiveness, empathy&kindness")
