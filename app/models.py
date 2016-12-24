@@ -1,3 +1,6 @@
+#!flask/bin/python
+# -*- coding: utf-8 -*-
+
 import datetime
 import os
 import re
@@ -48,8 +51,8 @@ class JobAd(db.Model):
         cleaner_text = ''.join([i if ord(i) < 128 else ' '
             for i in self.jobAdText])
         cleaner_text = re.sub("[\\s]", " ", cleaner_text, 0, 0)
-        cleaned_word_list = re.sub("[\.\t\,\?\@\':;\(\)\./&]", " ",
-            cleaner_text, 0, 0).split(" ")
+        cleaned_word_list = re.sub(u"[\.\t\,“”‘’<>\*\?\!\"\[\]\@\':;\(\)\./&]",
+            " ", cleaner_text, 0, 0).split(" ")
         word_list = [word.lower() for word in cleaned_word_list if word != ""]
         return self.de_hyphen_non_coded_words(word_list)
 

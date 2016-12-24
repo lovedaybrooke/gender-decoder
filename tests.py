@@ -43,14 +43,29 @@ class TestCase(unittest.TestCase):
         bracket = JobAd(u"Sharing(ambitious) and (leader)")
         self.assertEqual(bracket.clean_up_word_list(), ['sharing', 'ambitious',
             'and', 'leader'])
+        sqbracket = JobAd(u"Sharing[ambitious] and [leader]")
+        self.assertEqual(sqbracket.clean_up_word_list(), ['sharing',
+            'ambitious', 'and', 'leader'])
+        abracket = JobAd(u"Sharing<ambitious> and <leader>")
+        self.assertEqual(abracket.clean_up_word_list(), ['sharing',
+            'ambitious', 'and', 'leader'])
         space = JobAd(u"Sharing ambitious ")
         self.assertEqual(space.clean_up_word_list(), ['sharing', 'ambitious'])
         amp = JobAd(u"Sharing&ambitious, empathy&kindness,")
         self.assertEqual(amp.clean_up_word_list(),
             ['sharing', 'ambitious', 'empathy', 'kindness'])
-        atandquestion = JobAd(u"Lead Developer Who is Connect@HBS? We ")
+        asterisk = JobAd(u"Sharing&ambitious*, empathy*kindness,")
+        self.assertEqual(asterisk.clean_up_word_list(),
+            ['sharing', 'ambitious', 'empathy', 'kindness'])
+        atandquestion = JobAd(u"Lead \"Developer\" Who is Connect@HBS? We ")
         self.assertEqual(atandquestion.clean_up_word_list(),
             ['lead', 'developer', 'who', 'is', 'connect', 'hbs', 'we'])
+        exclaim = JobAd(u"Lead Developer v good!")
+        self.assertEqual(exclaim.clean_up_word_list(),
+            ['lead', 'developer', 'v', 'good'])
+        curls = JobAd(u"“Lead” ‘Developer’ v good!")
+        self.assertEqual(exclaim.clean_up_word_list(),
+            ['lead', 'developer', 'v', 'good'])
 
     def test_extract_coded_words(self):
         j1 = JobAd(u"Ambition:competition–decisiveness, empathy&kindness")
