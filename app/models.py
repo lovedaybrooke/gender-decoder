@@ -33,6 +33,12 @@ class JobAd(db.Model):
                 self.hash = hash
                 break
 
+    def fix_ad(self):
+        self.analyse()
+        CodedWordCounter.process_ad(self)
+        db.session.add(self)
+        db.session.commit()
+
     def analyse(self):
         word_list = self.clean_up_word_list()
         self.extract_coded_words(word_list)
@@ -133,6 +139,8 @@ class CodedWordCounter(db.Model):
 
     @classmethod
     def process_ad(cls, ad):
+        cls.query.filter_by(ad_hash=ad.hash).delete()
+
         masc_words = ad.masculine_coded_words.split(",")
         masc_words = filter(None, masc_words)
         for word in masc_words:

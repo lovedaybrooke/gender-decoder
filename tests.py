@@ -164,5 +164,12 @@ class TestCase(unittest.TestCase):
         self.assertEqual(fem_coded_words, ['connect', 'empathy', 'kindness',
             'responsible', 'sharing', 'supporter', 'understand'])
 
+        # test the deletion step works
+        CodedWordCounter.process_ad(ad)
+        counters = CodedWordCounter.query.filter_by(ad_hash=ad.hash).all()
+        self.assertEqual(len(counters), 9)
+        total_count = sum([counter.count for counter in counters])
+        self.assertEqual(total_count, 10)
+
 if __name__ == '__main__':
     unittest.main()

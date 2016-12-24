@@ -34,6 +34,7 @@ def results(ad_hash):
         feminine_coded_words=feminine_coded_words,
         explanation=explanations[job_ad.coding])
 
+
 @app.route('/calculate/<hash>', methods=['POST'])
 def calculate(hash):
     hashes = [counter.ad_hash for counter in CodedWordCounter.query.all()]
@@ -42,6 +43,14 @@ def calculate(hash):
         ad = JobAd.query.filter_by(hash=hash).first()
         CodedWordCounter.process_ad(ad)
     return render_template('about.html')
+
+
+@app.route('/fix/<hash>', methods=['POST'])
+def fix(hash):
+    ad = JobAd.query.filter_by(hash=hash).first()
+    ad.fix_ad()
+    return render_template('about.html')
+
 
 @app.errorhandler(404)
 def page_not_found(error):
