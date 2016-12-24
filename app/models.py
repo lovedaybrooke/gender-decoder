@@ -16,12 +16,13 @@ class JobAd(db.Model):
     masculine_coded_words = db.Column(db.Text)
     feminine_coded_words = db.Column(db.Text)
     coding = db.Column(db.String())
+    coded_word_counter = db.relationship("CodedWordCounter", backref='job_ad')
 
     def __init__(self, jobAdText):
         self.make_hash()
         self.jobAdText = jobAdText
         self.analyse()
-        
+        CodedWordCounter.process_ad(self)
         db.session.add(self)
         db.session.commit()
 
@@ -86,3 +87,42 @@ class JobAd(db.Model):
             feminine_coded_words = self.feminine_coded_words.split(",")
         return masculine_coded_words, feminine_coded_words
 
+
+class CodedWordCounter(db.Model):
+    __tablename__ = "coded_word_counter"
+    id = db.Column(db.Integer, primary_key=True)
+    ad_hash = db.Column(db.String(), db.ForeignKey('job_ad.hash'))
+    word = db.Column(db.Text)
+    coding = db.Column(db.Text)
+    count = db.Column(db.Integer)
+
+    def __init__(self, ad, word, coding):
+        self.ad_hash = ad.hash
+        self.word = word
+        self.coding = coding
+        self.count = 1
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def increment_or_create(cls, ad, word, coding):
+        existing_counter = cls.query.filter_by(ad_hash=ad.hash).filter_by(
+            word=word).first()
+        if existing_counter:
+            existing_counter.count += 1
+            db.session.add(existing_counter)
+            db.session.commit()
+        else:
+            new_counter = cls(ad, word, coding)
+
+    @classmethod
+    def process_ad(cls, ad):
+        masc_words = ad.masculine_coded_words.split(",")
+        masc_words = filter(None, masc_words)
+        for word in masc_words:
+            cls.increment_or_create(ad, word, 'masculine')
+
+        fem_words = ad.feminine_coded_words.split(",")
+        fem_words = filter(None, fem_words)
+        for word in fem_words:
+            cls.increment_or_create(ad, word, 'feminine')
