@@ -6,7 +6,8 @@ import unittest
 
 from config import basedir
 from app import app, db
-from app.models import JobAd
+from app.models import JobAd, CodedWordCounter
+
 
 
 class TestCase(unittest.TestCase):
@@ -127,7 +128,41 @@ class TestCase(unittest.TestCase):
         self.assertEqual(j1.masculine_coded_words, "ambition,competition,"
                 "decisiveness,leadership,decisiveness,stubborness")
         self.assertEqual(j1.feminine_word_count, 2)
-        self.assertEqual(j1.feminine_coded_words, "sharing,empathy")
+        self.assertEqual(j1.feminine_coded_words,"sharing,empathy")
+
+    def test_increment_or_create(self):
+        ad = JobAd(u"sharing leader sharing")
+        sharing_counter = CodedWordCounter.query.filter_by(
+            ad_hash=ad.hash).filter_by(word='sharing').all()
+        self.assertEqual(len(sharing_counter), 1)
+        self.assertEqual(sharing_counter[0].count, 2)
+
+        leader_counter = CodedWordCounter.query.filter_by(
+            ad_hash=ad.hash).filter_by(word='leader').all()
+        self.assertEqual(len(leader_counter), 1)
+        self.assertEqual(leader_counter[0].count, 1)
+
+        CodedWordCounter.increment_or_create(ad, "leader", "masculine")
+        leader_counter = CodedWordCounter.query.filter_by(
+            ad_hash=ad.hash).filter_by(word='leader').all()
+        self.assertEqual(len(leader_counter), 1)
+        self.assertEqual(leader_counter[0].count, 2)
+
+    def test_process_ad(self):
+        ad = JobAd(u"Sharing: ambition\tkindness&empathy(never more than frou)"
+                " Who is Connect@HBS? leader-supporter-follower "
+                "aggresive/responsible;understand? connect")
+        CodedWordCounter.process_ad(ad)
+        counters = CodedWordCounter.query.filter_by(ad_hash=ad.hash).all()
+        self.assertEqual(len(counters), 9)
+
+        masc_coded_words = sorted([counter.word for counter in counters
+            if counter.coding == 'masculine'])
+        fem_coded_words = sorted([counter.word for counter in counters
+            if counter.coding == 'feminine'])
+        self.assertEqual(masc_coded_words, ['ambition', 'leader'])
+        self.assertEqual(fem_coded_words, ['connect', 'empathy', 'kindness',
+            'responsible', 'sharing', 'supporter', 'understand'])
 
 if __name__ == '__main__':
     unittest.main()
