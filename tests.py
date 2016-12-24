@@ -98,7 +98,7 @@ class TestCase(unittest.TestCase):
         self.assertEqual(j4.masculine_word_count, 6)
         self.assertEqual(j4.feminine_word_count, 2)
         self.assertEqual(j4.coding, "strongly masculine-coded")
-        
+
     def test_assess_coding_feminine(self):
         j1 = JobAd(u"Ambition:competition, empathy&kindness, co-operation")
         self.assertEqual(j1.masculine_word_count, 2)
