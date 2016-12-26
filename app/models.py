@@ -36,6 +36,7 @@ class JobAd(db.Model):
                 self.hash = hash
                 break
 
+    # old method for recalculating ads eg after changes to clean_up_word_list
     def fix_ad(self):
         self.analyse()
         CodedWordCounter.process_ad(self)
