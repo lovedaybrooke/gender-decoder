@@ -136,7 +136,7 @@ class TestCase(unittest.TestCase):
     def test_analyse(self):
         j1 = JobAd(u"Ambition:competition–decisiveness&leadership,"
             " decisiveness, stubborness, sharing and empathy")
-        self.assertEqual(j1.jobAdText, u"Ambition:competition–decisiveness"
+        self.assertEqual(j1.ad_text, u"Ambition:competition–decisiveness"
             "&leadership, decisiveness, stubborness, sharing and empathy")
         self.assertTrue(j1.coding == "strongly masculine-coded")
         self.assertEqual(j1.masculine_word_count, 6)

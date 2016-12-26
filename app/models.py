@@ -13,7 +13,7 @@ from wordlists import *
 class JobAd(db.Model):
     hash = db.Column(db.String(), primary_key=True)
     date = db.Column(db.DateTime, default=datetime.datetime.utcnow)
-    jobAdText = db.Column(db.Text)
+    ad_text = db.Column(db.Text)
     masculine_word_count = db.Column(db.Integer, default=0)
     feminine_word_count = db.Column(db.Integer, default=0)
     masculine_coded_words = db.Column(db.Text)
@@ -21,9 +21,9 @@ class JobAd(db.Model):
     coding = db.Column(db.String())
     coded_word_counter = db.relationship("CodedWordCounter", backref='job_ad')
 
-    def __init__(self, jobAdText):
+    def __init__(self, ad_text):
         self.make_hash()
-        self.jobAdText = jobAdText
+        self.ad_text = ad_text
         self.analyse()
         CodedWordCounter.process_ad(self)
         db.session.add(self)
@@ -50,7 +50,7 @@ class JobAd(db.Model):
 
     def clean_up_word_list(self):
         cleaner_text = ''.join([i if ord(i) < 128 else ' '
-            for i in self.jobAdText])
+            for i in self.ad_text])
         cleaner_text = re.sub("[\\s]", " ", cleaner_text, 0, 0)
         cleaned_word_list = re.sub(u"[\.\t\,“”‘’<>\*\?\!\"\[\]\@\':;\(\)\./&]",
             " ", cleaner_text, 0, 0).split(" ")
