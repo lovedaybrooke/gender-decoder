@@ -82,7 +82,7 @@ masculine_coded_words = [
     "headstrong",
     "hierarch",
     "hostil",
-    "implusive",
+    "impulsive",
     "independen",
     "individual",
     "intellect",
