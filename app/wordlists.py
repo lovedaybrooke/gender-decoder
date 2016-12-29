@@ -1,3 +1,6 @@
+# These words are written as the stem to make it easier to match all variants.
+# In other words, the suffix is intentionally left out.
+
 feminine_coded_words = [
     "agree",
     "affectionate",
