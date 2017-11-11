@@ -80,27 +80,13 @@ class JobAd(db.Model):
         app.logger.info("---")
 
     def clean_up_word_list(self):
+        self.ad_text = self.ad_text.replace("-","")
         cleaner_text = ''.join([i if ord(i) < 128 else ' '
             for i in self.ad_text])
         cleaner_text = re.sub("[\\s]", " ", cleaner_text, 0, 0)
         cleaned_word_list = re.sub(u"[\.\t\,“”‘’<>\*\?\!\"\[\]\@\':;\(\)\./&]",
             " ", cleaner_text, 0, 0).split(" ")
         word_list = [word.lower() for word in cleaned_word_list if word != ""]
-        return self.de_hyphen_non_coded_words(word_list)
-
-    def de_hyphen_non_coded_words(self, word_list):
-        for word in word_list:
-            if word.find("-"):
-                is_coded_word = False
-                for coded_word in hyphenated_coded_words:
-                    if word.startswith(coded_word):
-                        is_coded_word = True
-                if not is_coded_word:
-                    word_index = word_list.index(word)
-                    word_list.remove(word)
-                    split_words = word.split("-")
-                    word_list = (word_list[:word_index] + split_words +
-                        word_list[word_index:])
         return word_list
 
     def extract_coded_words(self, advert_word_list):

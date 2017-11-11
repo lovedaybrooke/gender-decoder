@@ -24,9 +24,6 @@ feminine_coded_words = [
     "interpersonal",
     "interdependen",
     "interpersona",
-    "inter-personal",
-    "inter-dependen",
-    "inter-persona",
     "kind",
     "kinship",
     "loyal",
@@ -81,7 +78,6 @@ masculine_coded_words = [
     "fight",
     "force",
     "greedy",
-    "head-strong",
     "headstrong",
     "hierarch",
     "hostil",
@@ -97,25 +93,12 @@ masculine_coded_words = [
     "persist",
     "principle",
     "reckless",
-    "self-confiden",
-    "self-relian",
-    "self-sufficien",
     "selfconfiden",
     "selfrelian",
     "selfsufficien",
     "stubborn",
     "superior",
     "unreasonab"
-]
-
-hyphenated_coded_words = [
-    "co-operat",
-    "inter-personal",
-    "inter-dependen",
-    "inter-persona",
-    "self-confiden",
-    "self-relian",
-    "self-sufficien"
 ]
 
 possible_codings = (

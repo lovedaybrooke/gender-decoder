@@ -37,7 +37,7 @@ class TestCase(unittest.TestCase):
         self.assertEqual(slash.clean_up_word_list(), ['sharing', 'ambitious'])
         hyphen = JobAd(u"Sharing, co-operative, 'servant-leader'")
         self.assertEqual(hyphen.clean_up_word_list(),
-            ['sharing', 'co-operative', 'servant', 'leader'])
+            ['sharing', 'cooperative', 'servantleader'])
         mdash = JobAd(u"Sharing—ambitious")
         self.assertEqual(mdash.clean_up_word_list(), ['sharing', 'ambitious'])
         bracket = JobAd(u"Sharing(ambitious) and (leader)")
