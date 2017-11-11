@@ -66,11 +66,11 @@ class JobAd(db.Model):
         app.logger.info("Clean up word list started")
         app.logger.info(datetime.datetime.now())
         app.logger.info("---")
-        word_list = self.clean_up_word_list()
+        word_dict = self.make_word_dict()
         app.logger.info("Extract coded words started")
         app.logger.info(datetime.datetime.now())
         app.logger.info("---")
-        self.extract_coded_words(word_list)
+        self.extract_coded_words(word_dict)
         app.logger.info("Assess coding started")
         app.logger.info(datetime.datetime.now())
         app.logger.info("---")
@@ -79,29 +79,49 @@ class JobAd(db.Model):
         app.logger.info(datetime.datetime.now())
         app.logger.info("---")
 
-    def clean_up_word_list(self):
+    def clean_text(self):
         self.ad_text = self.ad_text.replace("-","")
+        cleaner_text = self.ad_text.lower()
         cleaner_text = ''.join([i if ord(i) < 128 else ' '
-            for i in self.ad_text])
+            for i in cleaner_text])
         cleaner_text = re.sub("[\\s]", " ", cleaner_text, 0, 0)
-        cleaned_word_list = re.sub(u"[\.\t\,“”‘’<>\*\?\!\"\[\]\@\':;\(\)\./&]",
-            " ", cleaner_text, 0, 0).split(" ")
-        word_list = [word.lower() for word in cleaned_word_list if word != ""]
-        return word_list
+        cleaner_text = re.sub(u"[\.\t\,“”‘’<>\*\?\!\"\[\]\@\':;\(\)\./&]",
+            " ", cleaner_text, 0, 0)
+        return cleaner_text
 
-    def extract_coded_words(self, advert_word_list):
-        words, count = self.find_and_count_coded_words(advert_word_list,
+    def make_word_dict(self):
+        cleaner_text = self.clean_text()
+        cleaned_word_list = cleaner_text.split(" ")
+        word_dict = {}
+        for word in cleaned_word_list:
+            if len(word) > 0:
+                if word in word_dict.keys():
+                    word_dict[word] += 1
+                else:
+                    word_dict[word] = 1
+        return word_dict
+
+    def extract_coded_words(self, advert_word_dict):
+        words, count = self.find_and_count_coded_words(advert_word_dict,
             masculine_coded_words)
         self.masculine_coded_words, self.masculine_word_count = words, count
-        words, count = self.find_and_count_coded_words(advert_word_list,
+        words, count = self.find_and_count_coded_words(advert_word_dict,
             feminine_coded_words)
         self.feminine_coded_words, self.feminine_word_count = words, count
 
-    def find_and_count_coded_words(self, advert_word_list, gendered_word_list):
-        gender_coded_words = [word for word in advert_word_list
-            for coded_word in gendered_word_list
-            if word.startswith(coded_word)]
-        return (",").join(gender_coded_words), len(gender_coded_words)
+    def find_and_count_coded_words(self, advert_word_dict, gendered_word_list):
+        gender_coded_words = []
+        gender_coded_word_count = 0
+        for advert_word, count in advert_word_dict.iteritems():
+            for coded_word in gendered_word_list:
+                if advert_word.startswith(coded_word):
+                    gender_coded_word_count += count
+                    if count > 1:
+                        gender_coded_words.append(
+                            "{0} ({1} times)".format(advert_word, count))
+                    else:
+                        gender_coded_words.append(advert_word)
+        return (",").join(gender_coded_words), gender_coded_word_count
 
     def assess_coding(self):
         coding_score = self.feminine_word_count - self.masculine_word_count
