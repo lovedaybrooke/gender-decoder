@@ -27,7 +27,7 @@ class JobAd(db.Model):
         self.analyse()
         db.session.add(self)
         db.session.commit()
-        CodedWordCounter.process_ad(self)
+        # CodedWordCounter.process_ad(self)
 
     def make_hash(self):
         while True:
