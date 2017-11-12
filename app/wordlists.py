@@ -101,6 +101,15 @@ masculine_coded_words = [
     "unreasonab"
 ]
 
+should_be_hyphenated = {
+    "co operat": "cooperat",
+    "inter personal": "interpersonal",
+    "inter dependen": "interdependen",
+    "self confiden": "selfconfiden",
+    "self relian": "selfrelian",
+    "self sufficien": "selfsufficien"
+}
+
 possible_codings = (
     "strongly feminine-coded",
     "feminine-coded",

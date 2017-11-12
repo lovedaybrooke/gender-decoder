@@ -80,14 +80,21 @@ class JobAd(db.Model):
         app.logger.info("---")
 
     def clean_text(self):
+        self.remove_should_be_hyphenated_words()
         self.ad_text = self.ad_text.replace("-", "")
-        cleaner_text = self.ad_text.lower()
+        self.ad_text = self.ad_text.lower()
         cleaner_text = ''.join([i if ord(i) < 128 else ' '
-            for i in cleaner_text])
+            for i in self.ad_text])
         cleaner_text = re.sub("[\\s]", " ", cleaner_text, 0, 0)
         cleaner_text = re.sub(u"[\.\t\,“”‘’<>\*\?\!\"\[\]\@\':;\(\)\./&]",
             " ", cleaner_text, 0, 0)
         return cleaner_text
+
+    def remove_should_be_hyphenated_words(self):
+        # this converts "self reliant" into "selfreliant" etc
+        # so it can be processed properly by the clean_text method
+        for original, updated in wordlists.should_be_hyphenated.iteritems():
+            self.ad_text = self.ad_text.replace(original, updated)
 
     def make_word_dict(self):
         cleaner_text = self.clean_text()
