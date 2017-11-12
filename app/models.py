@@ -6,6 +6,7 @@ import os
 import sys
 import re
 import logging
+import uuid
 from binascii import hexlify
 
 from app import app, db
@@ -33,7 +34,7 @@ class JobAd(db.Model):
         app.logger.info("Hash creation started")
         app.logger.info(start_time)
         app.logger.info("---")
-        self.make_hash()
+        self.hash = str(uuid.uuid4())
         self.ad_text = ad_text
         app.logger.info("Analysis started")
         app.logger.info(datetime.datetime.now())
@@ -51,13 +52,6 @@ class JobAd(db.Model):
             datetime.datetime.now() - start_time))
         app.logger.info("==============================")
         # CodedWordCounter.process_ad(self)
-
-    def make_hash(self):
-        while True:
-            hash = hexlify(os.urandom(8))
-            if hash not in [ad.hash for ad in JobAd.query.all()]:
-                self.hash = hash
-                break
 
     # old method for recalculating ads eg after changes to clean_up_word_list
     def fix_ad(self):
