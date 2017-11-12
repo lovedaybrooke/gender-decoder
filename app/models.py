@@ -80,7 +80,7 @@ class JobAd(db.Model):
         app.logger.info("---")
 
     def clean_text(self):
-        self.ad_text = self.ad_text.replace("-","")
+        self.ad_text = self.ad_text.replace("-", "")
         cleaner_text = self.ad_text.lower()
         cleaner_text = ''.join([i if ord(i) < 128 else ' '
             for i in cleaner_text])

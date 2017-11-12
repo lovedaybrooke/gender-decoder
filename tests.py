@@ -9,7 +9,6 @@ from app import app, db
 from app.models import JobAd, CodedWordCounter
 
 
-
 class TestCase(unittest.TestCase):
     def setUp(self):
         app.config['TESTING'] = True
@@ -44,10 +43,10 @@ class TestCase(unittest.TestCase):
         self.assertEqual(bracket.clean_text(),
             "sharing ambitious  and  leader ")
         sqbracket = JobAd(u"Sharing[ambitious] and [leader]")
-        self.assertEqual(sqbracket.clean_text(), 
+        self.assertEqual(sqbracket.clean_text(),
             "sharing ambitious  and  leader ")
         abracket = JobAd(u"Sharing<ambitious> and <leader>")
-        self.assertEqual(abracket.clean_text(), 
+        self.assertEqual(abracket.clean_text(),
             "sharing ambitious  and  leader ")
         space = JobAd(u"Sharing ambitious ")
         self.assertEqual(space.clean_text(), "sharing ambitious ")
@@ -67,7 +66,6 @@ class TestCase(unittest.TestCase):
         self.assertEqual(exclaim.clean_text(),
             "lead developer v good ")
 
-
     def test_make_word_dict(self):
         caps = JobAd("Sharing is as important as ambition")
         self.assertEqual(caps.make_word_dict(),
@@ -79,24 +77,25 @@ class TestCase(unittest.TestCase):
         self.assertEqual(semicolon.make_word_dict(),
             {'sharing': 1, 'ambitious': 1})
         slash = JobAd(u"Sharing/ambitious")
-        self.assertEqual(slash.make_word_dict(), {'sharing': 1, 'ambitious': 1})
+        self.assertEqual(slash.make_word_dict(),
+            {'sharing': 1, 'ambitious': 1})
         hyphen = JobAd(u"Sharing, co-operative, 'servant-leader'")
         self.assertEqual(hyphen.make_word_dict(),
             {'sharing': 1, 'cooperative': 1, 'servantleader': 1})
         mdash = JobAd(u"Sharing—ambitious")
-        self.assertEqual(mdash.make_word_dict(), 
+        self.assertEqual(mdash.make_word_dict(),
             {'sharing': 1, 'ambitious': 1})
         bracket = JobAd(u"Sharing(ambitious) and (leader)")
-        self.assertEqual(bracket.make_word_dict(), 
+        self.assertEqual(bracket.make_word_dict(),
             {'sharing': 1, 'ambitious': 1, 'and': 1, 'leader': 1})
         sqbracket = JobAd(u"Sharing[ambitious] and [leader]")
-        self.assertEqual(sqbracket.make_word_dict(), 
+        self.assertEqual(sqbracket.make_word_dict(),
             {'sharing': 1, 'ambitious': 1, 'and': 1, 'leader': 1})
         abracket = JobAd(u"Sharing<ambitious> and <leader>")
-        self.assertEqual(abracket.make_word_dict(), 
+        self.assertEqual(abracket.make_word_dict(),
             {'sharing': 1, 'ambitious': 1, 'and': 1, 'leader': 1})
         space = JobAd(u"Sharing ambitious ")
-        self.assertEqual(space.make_word_dict(), 
+        self.assertEqual(space.make_word_dict(),
             {'sharing': 1, 'ambitious': 1})
         amp = JobAd(u"Sharing&ambitious, empathy&kindness,")
         self.assertEqual(amp.make_word_dict(),
@@ -163,7 +162,8 @@ class TestCase(unittest.TestCase):
         self.assertEqual(j2.masculine_word_count, 3)
         self.assertEqual(j2.feminine_word_count, 0)
         self.assertEqual(j2.coding, "masculine-coded")
-        j3 = JobAd(u"Ambition:competition–decisiveness&leadership, other words")
+        j3 = JobAd(u"Ambition:competition–decisiveness&leadership, "
+            "other words")
         self.assertEqual(j3.masculine_word_count, 4)
         self.assertEqual(j3.feminine_word_count, 0)
         self.assertEqual(j3.coding, "strongly masculine-coded")
@@ -203,7 +203,7 @@ class TestCase(unittest.TestCase):
         self.assertEqual(j1.masculine_coded_words, "stubborness,decisiveness "
             "(2 times),competition,leadership,ambition")
         self.assertEqual(j1.feminine_word_count, 2)
-        self.assertEqual(j1.feminine_coded_words,"sharing,empathy")
+        self.assertEqual(j1.feminine_coded_words, "sharing,empathy")
 
 if __name__ == '__main__':
     unittest.main()
