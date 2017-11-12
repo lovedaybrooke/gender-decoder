@@ -5,7 +5,7 @@ import datetime
 from app import app, db
 from forms import JobAdForm
 from models import JobAd, CodedWordCounter
-from wordlists import *
+import wordlists
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -21,8 +21,8 @@ def home():
 @app.route('/about')
 def about():
     return render_template('about.html',
-        masculine_coded_words=masculine_coded_words,
-        feminine_coded_words=feminine_coded_words)
+        masculine_coded_words=wordlists.masculine_coded_words,
+        feminine_coded_words=wordlists.feminine_coded_words)
 
 
 @app.route('/results/<ad_hash>')
@@ -34,7 +34,7 @@ def results(ad_hash):
         feminine_coded_words=feminine_coded_words,
         masculine_word_count=job_ad.masculine_word_count,
         feminine_word_count=job_ad.feminine_word_count,
-        explanation=explanations[job_ad.coding])
+        explanation=wordlists.explanations[job_ad.coding])
 
 
 @app.errorhandler(404)

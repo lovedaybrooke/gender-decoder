@@ -10,7 +10,7 @@ import uuid
 from binascii import hexlify
 
 from app import app, db
-from wordlists import *
+import wordlists
 
 
 class JobAd(db.Model):
@@ -103,10 +103,10 @@ class JobAd(db.Model):
 
     def extract_coded_words(self, advert_word_dict):
         words, count = self.find_and_count_coded_words(advert_word_dict,
-            masculine_coded_words)
+            wordlists.masculine_coded_words)
         self.masculine_coded_words, self.masculine_word_count = words, count
         words, count = self.find_and_count_coded_words(advert_word_dict,
-            feminine_coded_words)
+            wordlists.feminine_coded_words)
         self.feminine_coded_words, self.feminine_word_count = words, count
 
     def find_and_count_coded_words(self, advert_word_dict, gendered_word_list):
