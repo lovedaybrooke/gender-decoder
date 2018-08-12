@@ -25,32 +25,12 @@ class JobAd(db.Model):
     coded_word_counter = db.relationship("CodedWordCounter", backref='job_ad')
 
     def __init__(self, ad_text):
-        app.logger.addHandler(logging.StreamHandler(sys.stdout))
-        app.logger.setLevel(logging.INFO)
-        app.logger.info("==============================")
-        app.logger.info("LET US BEGIN")
-        app.logger.info("==============================")
         start_time = datetime.datetime.now()
-        app.logger.info("Hash creation started")
-        app.logger.info(start_time)
-        app.logger.info("---")
         self.hash = str(uuid.uuid4())
         self.ad_text = ad_text
-        app.logger.info("Analysis started")
-        app.logger.info(datetime.datetime.now())
-        app.logger.info("---")
         self.analyse()
-        app.logger.info("DB addition started")
-        app.logger.info(datetime.datetime.now())
-        app.logger.info("---")
         db.session.add(self)
-        app.logger.info("DB commit started")
-        app.logger.info(datetime.datetime.now())
         db.session.commit()
-        app.logger.info("==============================")
-        app.logger.info("Time taken: {0}".format(
-            datetime.datetime.now() - start_time))
-        app.logger.info("==============================")
         # CodedWordCounter.process_ad(self)
 
     # old method for recalculating ads eg after changes to clean_up_word_list
@@ -61,23 +41,9 @@ class JobAd(db.Model):
         db.session.commit()
 
     def analyse(self):
-        app.logger.addHandler(logging.StreamHandler(sys.stdout))
-        app.logger.setLevel(logging.INFO)
-        app.logger.info("Clean up word list started")
-        app.logger.info(datetime.datetime.now())
-        app.logger.info("---")
         word_list = self.clean_up_word_list()
-        app.logger.info("Extract coded words started")
-        app.logger.info(datetime.datetime.now())
-        app.logger.info("---")
         self.extract_coded_words(word_list)
-        app.logger.info("Assess coding started")
-        app.logger.info(datetime.datetime.now())
-        app.logger.info("---")
         self.assess_coding()
-        app.logger.info("Analysis finished")
-        app.logger.info(datetime.datetime.now())
-        app.logger.info("---")
 
     def clean_up_word_list(self):
         cleaner_text = ''.join([i if ord(i) < 128 else ' '
@@ -142,7 +108,26 @@ class JobAd(db.Model):
             feminine_coded_words = []
         else:
             feminine_coded_words = self.feminine_coded_words.split(",")
+        masculine_coded_words = self.handle_duplicates(masculine_coded_words)
+        feminine_coded_words = self.handle_duplicates(feminine_coded_words)
         return masculine_coded_words, feminine_coded_words
+
+    def handle_duplicates(self, word_list):
+        d = {}
+        l = []
+        for item in word_list:
+            if item not in d.keys():
+                d[item] = 1
+            else:
+                d[item] += 1
+        for key, value in d.items():
+            if value == 1:
+                l.append(key)
+            else:
+                l.append("{0} ({1} times)".format(key, value))
+        return l
+
+
 
 
 class CodedWordCounter(db.Model):

@@ -85,6 +85,13 @@ class TestCase(unittest.TestCase):
         self.assertEqual(j3.feminine_coded_words, "empathy,kindness")
         self.assertEqual(j3.feminine_word_count, 2)
 
+    def test_list_words(self):
+        j1 = JobAd(u"leader leader leader, ambition, ambition, competition")
+        masc_words, fem_words = j1.list_words()
+        self.assertEqual(masc_words,
+                         ['leader (3 times)', 'ambition (2 times)', 
+                          'competition'])
+
     def test_assess_coding_neutral_and_empty(self):
         j1 = JobAd("irrelevant words")
         self.assertFalse(j1.masculine_word_count)
