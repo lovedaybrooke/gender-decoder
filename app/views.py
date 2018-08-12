@@ -3,9 +3,9 @@ from flask import render_template, redirect, request
 from wtforms.validators import ValidationError
 import datetime
 from app import app, db
-from forms import JobAdForm
-from models import JobAd, CodedWordCounter
-from wordlists import *
+from app.forms import JobAdForm
+from app.models import JobAd, CodedWordCounter
+from app.wordlists import *
 
 
 @app.route('/', methods=['GET', 'POST'])

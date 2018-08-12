@@ -10,7 +10,7 @@ import uuid
 from binascii import hexlify
 
 from app import app, db
-from wordlists import *
+from app.wordlists import *
 
 
 class JobAd(db.Model):
