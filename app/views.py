@@ -42,7 +42,9 @@ def results(ad_hash):
                        job_ad.language)
     return render_template('results.html', job_ad=job_ad,
         masculine_coded_words=masculine_coded_words,
+        masculine_coded_word_count=job_ad.masculine_word_count,
         feminine_coded_words=feminine_coded_words,
+        feminine_coded_word_count=job_ad.feminine_word_count,
         explanation=job_ad.provide_explanation(),
         language_name=name,
         language_code=code,
