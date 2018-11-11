@@ -68,8 +68,8 @@ class TestJobAd(unittest.TestCase):
         exclaim = JobAd(u"Lead Developer v good!")
         self.assertEqual(exclaim.clean_up_word_list(translated_wordlists),
             ['lead', 'developer', 'v', 'good'])
-        curls = JobAd(u"“Lead” ‘Developer’ v good!")
-        self.assertEqual(exclaim.clean_up_word_list(translated_wordlists),
+        curls = JobAd(u"“Lead” ‘Developer’ v good")
+        self.assertEqual(curls.clean_up_word_list(translated_wordlists),
             ['lead', 'developer', 'v', 'good'])
 
     def test_clean_up_word_list_in_another_language(self):
