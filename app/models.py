@@ -51,11 +51,10 @@ class JobAd(db.Model):
         self.assess_coding()
 
     def clean_up_word_list(self, translated_wordlists):
-        cleaner_text = ''.join([i if ord(i) < 128 else ' '
-            for i in self.ad_text])
+        cleaner_text = ''.join([i if ord(i) < 128  or ord(i) > 192 and ord(i) < 257
+            else ' ' for i in self.ad_text])
         cleaner_text = re.sub("[\\s]", " ", cleaner_text, 0, 0)
-        cleaned_word_list = re.sub(u"[\.\t\,“”‘’<>\*\?\!\"\[\]\@\':;\(\)\./&]",
-            " ", cleaner_text, 0, 0).split(" ")
+        cleaned_word_list = re.sub(u"[\.\t\,“”‘’<>\*\?\!\"\[\]\@\':;\(\)\./&]", " ", cleaner_text, 0, 0).split(" ")
         advert_word_list = [word.lower() for word in cleaned_word_list 
                             if word != ""]
         return self.de_hyphen_non_coded_words(advert_word_list, 

@@ -71,6 +71,9 @@ class TestJobAd(unittest.TestCase):
         curls = JobAd(u"“Lead” ‘Developer’ v good")
         self.assertEqual(curls.clean_up_word_list(translated_wordlists),
             ['lead', 'developer', 'v', 'good'])
+        accents = JobAd(u"cariñoso colaboración pingüino")
+        self.assertEqual(accents.clean_up_word_list(translated_wordlists),
+            ['cariñoso', 'colaboración', 'pingüino'])
 
     def test_clean_up_word_list_in_another_language(self):
         translated_wordlists = TranslatedWordlist("test")
@@ -302,9 +305,9 @@ class TestForms(unittest.TestCase):
             from app.forms import JobAdForm
             form = JobAdForm()
             self.assertEqual(form.language.default, ("en", "English"))
-            self.assertEqual(form.language.choices, [("en", "English")])
-            # self.assertEqual(form.language.choices, [("en", "English"), 
-            #                                          ('test', 'Gobbledegook')])
+            self.assertEqual(form.language.choices, [("en", "English"), 
+                                                     # ('test', 'Gobbledegook'),
+                                                     ('es_es', 'Spanish')])
 
 if __name__ == '__main__':
     unittest.main()
