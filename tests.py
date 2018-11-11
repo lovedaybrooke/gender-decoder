@@ -96,6 +96,12 @@ class TestJobAd(unittest.TestCase):
         self.assertEqual(j3.masculine_word_count, 0)
         self.assertEqual(j3.feminine_coded_words, "empathy,kindness")
         self.assertEqual(j3.feminine_word_count, 2)
+        sharks = JobAd(u"sharks support understanding")
+        self.assertEqual(sharks.masculine_coded_words, "")
+        self.assertEqual(sharks.masculine_word_count, 0)
+        self.assertEqual(sharks.feminine_coded_words, "support,understanding")
+        self.assertEqual(sharks.feminine_word_count, 2)
+
 
     def test_list_words(self):
         j1 = JobAd(u"leader leader leader, ambition, ambition, competition")
