@@ -217,9 +217,9 @@ class TranslatedWordlist(object):
         wordlists = importlib.import_module('.{0}'.format(language),
                                             'app.wordlists')
 
-        self.hyphenated_coded_words = wordlists.hyphenated_coded_words
         self.masculine_coded_words = wordlists.masculine_coded_words
         self.feminine_coded_words = wordlists.feminine_coded_words
+        self.hyphenated_coded_words = [word for word in wordlists.feminine_coded_words if "-" in word] + [word for word in wordlists.masculine_coded_words if "-" in word]
 
     @classmethod
     def get_language_name_and_source(cls, language):

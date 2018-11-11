@@ -134,8 +134,3 @@ masculine_coded_words = [
     "obstinado",
     "superior"
 ]
-
-hyphenated_coded_words = [word for word in feminine_coded_words
-                          if "-" in word] + [
-                          word for word in masculine_coded_words 
-                          if "-" in word]
