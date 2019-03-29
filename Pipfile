@@ -20,7 +20,7 @@ Flask-WTF = "==0.13.1"
 Jinja2 = "==2.8"
 MarkupSafe = "*"
 Werkzeug = "*"
-WTForms = "==2.1"
+WTForms = "*"
 SQLAlchemy = "==1.1.4"
 Tempita = "==0.5.2"
 
