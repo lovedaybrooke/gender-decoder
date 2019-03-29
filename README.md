@@ -49,3 +49,73 @@ Adding a new language
 5. **Submit a pull request**
 
    You may prefer to fork the repo, but it'd be nice if we could offer your new language on the main site too.
+   
+   
+## Install
+
+One way is to run and develop using docker.
+
+### Using docker-compose:
+
+1. Build and start the container
+
+    ```bash
+   $ docker-compose up --build
+   Building webapp
+   Step 1/10 : FROM python:3
+    ---> 59a8c21b72d4
+   Step 2/10 : RUN pip install pipenv
+    ---> Using cache
+    ---> c0d5e3f85c38
+   Step 3/10 : WORKDIR /app
+    ---> Using cache
+    ---> f3903c2620c1
+   Step 4/10 : COPY ./Pipfile* /app/
+    ---> Using cache
+    ---> 9009b291fbd8
+   Step 5/10 : RUN ls -l /app
+    ---> Using cache
+    ---> dbf81d3f73d1
+   Step 6/10 : RUN pipenv install
+    ---> Using cache
+    ---> 1e74e10a79a9
+   Step 7/10 : COPY . /app
+    ---> 8b28935827d6
+   Step 8/10 : EXPOSE 5000/tcp
+    ---> Running in c2e32ae5708e
+   Removing intermediate container c2e32ae5708e
+    ---> 09a500bf31c7
+   Step 9/10 : ENTRYPOINT ["pipenv", "run"]
+    ---> Running in a3ef32804042
+   Removing intermediate container a3ef32804042
+    ---> 33bbc34d27b7
+   Step 10/10 : CMD ["python", "runsite.py"]
+    ---> Running in 88d8181ff056
+   Removing intermediate container 88d8181ff056
+    ---> 95f76f9c69f1
+   Successfully built 95f76f9c69f1
+   Successfully tagged gender-decoder_webapp:latest
+   Recreating gender-decoder_webapp_1 ... done
+   Attaching to gender-decoder_webapp_1
+   webapp_1  |  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+   webapp_1  |  * Restarting with stat
+   webapp_1  |  * Debugger is active!
+   webapp_1  |  * Debugger pin code: 217-355-561
+    ```
+2. Open https://localhost:5000 in your browser
+
+### Create the database
+
+First make sure that the environment variable `DATABASE_URL` is correct.
+
+```bash
+export DATABASE_URL=postgres://katmatfield:Heartbleed@localhost/newdecoder
+```
+
+If not set it will default to a sqlite `app.db`. This will be fine for running locally but not great for running in multiple docker containers.
+
+Create the database using docker-compose:
+
+```bash
+docker-compose run --rm webapp python db_create.py
+```

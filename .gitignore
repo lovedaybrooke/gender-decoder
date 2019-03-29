@@ -2,3 +2,5 @@
 venv
 instance
 .DS_Store
+**/*.db
+**/*.sqlite3

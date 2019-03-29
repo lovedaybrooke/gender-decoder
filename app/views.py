@@ -1,13 +1,9 @@
-import datetime
-
-from flask import Flask
 from flask import render_template, redirect, request
-from wtforms.validators import ValidationError
 
-from app import app, db
-from app.forms import JobAdForm
-from app.models import JobAd, CodedWordCounter, TranslatedWordlist
 import app.wordlists as wordlists
+from app import app
+from app.forms import JobAdForm
+from app.models import JobAd, TranslatedWordlist
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -32,6 +28,7 @@ def about():
         language_name=wordlists.all_lists[language]["language_name"],
         masculine_coded_words=wordlists.all_lists[language]["masculine_coded_words"],
         feminine_coded_words=wordlists.all_lists[language]["feminine_coded_words"],
+        domain=request.headers.get("Host"),
     )
 
 
@@ -53,6 +50,7 @@ def results(ad_hash):
         language_name=name,
         language_code=code,
         source=source,
+        domain=request.headers.get("Host"),
     )
 
 

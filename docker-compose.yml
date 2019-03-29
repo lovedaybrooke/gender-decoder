@@ -1,0 +1,11 @@
+version: '3'
+services:
+  webapp:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - 5000:5000
+    environment:
+      - DEBUG=True
+      - SECRET_KEY=youwillneverguess
