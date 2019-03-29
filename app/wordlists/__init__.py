@@ -1,7 +1,7 @@
 import importlib
 
 # __all__ = ["en", "test", 'es_es']
-__all__ = ["en", "es_es"]
+__all__ = ["en", "es_es", "sv"]
 
 all_lists = {}
 
