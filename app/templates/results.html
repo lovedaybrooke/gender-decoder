@@ -5,8 +5,11 @@
         <h4>This advert is <strong>{% if job_ad.coding == "empty" %}neutral{% else %}{{ job_ad.coding }}{%endif%}</strong></h4>
         <p>{{ explanation }}</p>
         <p>Of course, there are plenty of other factors that affect the diversity of applicants for this role, and of the people who end up being hired. These include the company's reputation for inclusiveness, its culture, and the behaviour and prejudices (both conscious and unconscious) of the interviewers.</p>
+
+        {% if language_code != "en" %}<p class="reference">NB: this advert has been analysed using a {{language_name}} translation of the original coded words from the research paper by Gaucher, Friesen, and Kay.{% if source %} The translations have been provided by {{ source }}.{% endif %} Since these words weren't tested in the original research, we can't be certain they have the same effect. See the <a href="/about#faq6">FAQs</a> more for info.{% endif %}</p>
+
         <div id="masculine">
-            <h3>Masculine-coded words in this ad</h3>
+            <h3>{{ masculine_coded_word_count }} masculine-coded words in this ad</h3>
             {% if masculine_coded_words %}
             <ul>
                 {% for word in masculine_coded_words %}
@@ -16,10 +19,10 @@
             {% else %}
             <p>No masculine-coded words were found.</p>
             {% endif %}
-            <p><a class="reference" href="/about#masculine">See the full list of masculine-coded words</a></p>
+            <p><a class="reference" href="/about?language={{language_code}}#masculine">See the full list of masculine-coded words</a></p>
         </div>
         <div id="feminine">
-            <h3>Feminine-coded words in this ad</h3>
+            <h3>{{ feminine_coded_word_count }} feminine-coded words in this ad</h3>
             {% if feminine_coded_words %}
             <ul>
                 {% for word in feminine_coded_words %}
@@ -29,7 +32,7 @@
             {% else %}
             <p>No feminine-coded words were found.</p>
             {% endif %}
-            <p><a class="reference" href="/about#feminine">See the full list of feminine-coded words</a></p>
+            <p><a class="reference" href="/about?language={{language_code}}#feminine">See the full list of feminine-coded words</a></p>
         </div>
         <div id="share">
             <h3>Share this result</h3>

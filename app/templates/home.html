@@ -9,6 +9,11 @@
             {{ form.hidden_tag() }}
             <label for="texttotest">Paste your job ad here</label>
             {{ form.texttotest(cols="90", rows="20")|safe }}
+            {% if number_of_languages > 1 %}
+            <label for="language">What language is your ad written in?</label>
+            {{ form.language(cols="90", rows="20")|safe }}
+            <p class="reference">NB: the original research used by this tool only covered English. Gender-coded words in other languages haven't been proven to have the same effects. <a href="/about#faq6">Read more</a></p>
+            {% endif %}
             <input type="submit" value="Check this ad" class="button"/>
         </form>
     
