@@ -6,7 +6,6 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-click = "==6.6"
 gunicorn = "==19.6.0"
 itsdangerous = "==0.24"
 pep8 = "==1.7.0"
