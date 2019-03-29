@@ -22,7 +22,7 @@ MarkupSafe = "*"
 Werkzeug = "*"
 WTForms = "*"
 SQLAlchemy = "==1.1.4"
-Tempita = "==0.5.2"
+Tempita = "*"
 
 [requires]
 python_version = "3.7"
