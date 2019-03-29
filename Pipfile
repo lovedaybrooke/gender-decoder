@@ -9,7 +9,7 @@ verify_ssl = true
 gunicorn = "*"
 itsdangerous = "*"
 pep8 = "*"
-decorator = "==4.0.10"
+decorator = "*"
 psycopg2 = "*"
 six = "==1.10.0"
 sqlalchemy-migrate = "==0.10.0"
