@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "f300847e0c5581f27e55b374feb71668897b0be016b09b079cc09a49d981c00b"
+            "sha256": "7857fda1d6bcd5bdd2daa1725dc46b399e8f1ad931e21fb87a38ad7668894fe8"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -200,11 +200,11 @@
         },
         "sqlparse": {
             "hashes": [
-                "sha256:9b61c319b3c7b64681e1b4d554a9c3fe81ed52da00a901ccf3fe72962734e444",
-                "sha256:d446296b2c26f9466860dd85fa32480bec523ab96bda8879262c38e8e8fbba21"
+                "sha256:40afe6b8d4b1117e7dff5504d7a8ce07d9a1b15aeeade8a2d10f130a834f8177",
+                "sha256:7c3dca29c022744e95b547e867cee89f4fce4373f3549ccd8797d8eb52cdb873"
             ],
             "index": "pypi",
-            "version": "==0.2.2"
+            "version": "==0.3.0"
         },
         "tempita": {
             "hashes": [
