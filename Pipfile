@@ -7,7 +7,7 @@ verify_ssl = true
 
 [packages]
 gunicorn = "*"
-itsdangerous = "==0.24"
+itsdangerous = "*"
 pep8 = "==1.7.0"
 decorator = "==4.0.10"
 psycopg2 = "*"
