@@ -60,56 +60,61 @@ One way is to run and develop using docker.
 1. Build and start the container
 
     ```bash
-   $ docker-compose up --build
-   Building webapp
-   Step 1/10 : FROM python:3
+    $ docker-compose up --build
+    Building webapp
+    Step 1/10 : FROM python:3
     ---> 59a8c21b72d4
-   Step 2/10 : RUN pip install pipenv
+    Step 2/10 : RUN pip install pipenv
     ---> Using cache
     ---> c0d5e3f85c38
-   Step 3/10 : WORKDIR /app
+    Step 3/10 : WORKDIR /app
     ---> Using cache
     ---> f3903c2620c1
-   Step 4/10 : COPY ./Pipfile* /app/
+    Step 4/10 : COPY ./Pipfile* /app/
     ---> Using cache
-    ---> 9009b291fbd8
-   Step 5/10 : RUN ls -l /app
+    ---> dfcdea7dfd8e
+    Step 5/10 : RUN ls -l /app
     ---> Using cache
-    ---> dbf81d3f73d1
-   Step 6/10 : RUN pipenv install
+    ---> 0fe904e08c17
+    Step 6/10 : RUN pipenv install
     ---> Using cache
-    ---> 1e74e10a79a9
-   Step 7/10 : COPY . /app
-    ---> 8b28935827d6
-   Step 8/10 : EXPOSE 5000/tcp
-    ---> Running in c2e32ae5708e
-   Removing intermediate container c2e32ae5708e
-    ---> 09a500bf31c7
-   Step 9/10 : ENTRYPOINT ["pipenv", "run"]
-    ---> Running in a3ef32804042
-   Removing intermediate container a3ef32804042
-    ---> 33bbc34d27b7
-   Step 10/10 : CMD ["python", "runsite.py"]
-    ---> Running in 88d8181ff056
-   Removing intermediate container 88d8181ff056
-    ---> 95f76f9c69f1
-   Successfully built 95f76f9c69f1
-   Successfully tagged gender-decoder_webapp:latest
-   Recreating gender-decoder_webapp_1 ... done
-   Attaching to gender-decoder_webapp_1
-   webapp_1  |  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
-   webapp_1  |  * Restarting with stat
-   webapp_1  |  * Debugger is active!
-   webapp_1  |  * Debugger pin code: 217-355-561
+    ---> 74fac3c07a96
+    Step 7/10 : COPY . /app
+    ---> 6736cc0192c9
+    Step 8/10 : EXPOSE 5000/tcp
+    ---> Running in 34e514198a04
+    Removing intermediate container 34e514198a04
+    ---> 34f2f8b739c4
+    Step 9/10 : ENTRYPOINT ["pipenv", "run"]
+    ---> Running in 35d0cc1a47db
+    Removing intermediate container 35d0cc1a47db
+    ---> 274c28a9f227
+    Step 10/10 : CMD ["python", "runsite.py"]
+    ---> Running in 547b0c2961aa
+    Removing intermediate container 547b0c2961aa
+    ---> d4fea28ccf07
+    Successfully built d4fea28ccf07
+    Successfully tagged gender-decoder_webapp:latest
+    Recreating gender-decoder_webapp_1 ... done
+    Attaching to gender-decoder_webapp_1
+    webapp_1  |  * Serving Flask app "app" (lazy loading)
+    webapp_1  |  * Environment: production
+    webapp_1  |    WARNING: Do not use the development server in a production environment.
+    webapp_1  |    Use a production WSGI server instead.
+    webapp_1  |  * Debug mode: on
+    webapp_1  |  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+    webapp_1  |  * Restarting with stat
+    webapp_1  |  * Debugger is active!
+    webapp_1  |  * Debugger PIN: 217-355-561
     ```
 2. Open https://localhost:5000 in your browser
 
 ### Create the database
 
-First make sure that the environment variable `DATABASE_URL` is correct.
+First make sure that the environment variable `DATABASE_URI` is correct.
 
 ```bash
-export DATABASE_URL=postgres://katmatfield:Heartbleed@localhost/newdecoder
+export DATABASE_URI=postgres://katmatfield:Heartbleed@localhost/newdecoder
 ```
 
 If not set it will default to a sqlite `app.db`. This will be fine for running locally but not great for running in multiple docker containers.
