@@ -21,7 +21,7 @@ Jinja2 = "==2.8"
 MarkupSafe = "*"
 Werkzeug = "*"
 WTForms = "*"
-SQLAlchemy = "==1.1.4"
+SQLAlchemy = "*"
 Tempita = "*"
 
 [requires]
