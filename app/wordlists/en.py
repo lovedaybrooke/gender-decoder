@@ -55,7 +55,7 @@ feminine_coded_words = [
     "inclusive",
     "yield",
     "share",
-    "shari"
+    "shari",
 ]
 
 masculine_coded_words = [
@@ -110,5 +110,5 @@ masculine_coded_words = [
     "selfsufficien",
     "stubborn",
     "superior",
-    "unreasonab"
+    "unreasonab",
 ]

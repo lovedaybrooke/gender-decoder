@@ -63,7 +63,7 @@ feminine_coded_words = [
     "calentar",
     "queja",
     "entusiasmo",
-    "inclusivo"
+    "inclusivo",
 ]
 
 masculine_coded_words = [
@@ -132,5 +132,5 @@ masculine_coded_words = [
     "autosuficiente",
     "autoconfiado",
     "obstinado",
-    "superior"
+    "superior",
 ]

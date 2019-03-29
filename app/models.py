@@ -25,8 +25,7 @@ class JobAd(db.Model):
     masculine_coded_words = db.Column(db.Text)
     feminine_coded_words = db.Column(db.Text)
     coding = db.Column(db.String())
-    coded_word_counter = db.relationship("CodedWordCounter", backref='job_ad')
-
+    coded_word_counter = db.relationship("CodedWordCounter", backref="job_ad")
 
     def __init__(self, ad_text, language="en"):
         self.hash = str(uuid.uuid4())
@@ -51,14 +50,18 @@ class JobAd(db.Model):
         self.assess_coding()
 
     def clean_up_word_list(self, translated_wordlists):
-        cleaner_text = ''.join([i if ord(i) < 128  or ord(i) > 192 and ord(i) < 257
-            else ' ' for i in self.ad_text])
+        cleaner_text = "".join(
+            [
+                i if ord(i) < 128 or ord(i) > 192 and ord(i) < 257 else " "
+                for i in self.ad_text
+            ]
+        )
         cleaner_text = re.sub("[\\s]", " ", cleaner_text, 0, 0)
-        cleaned_word_list = re.sub(u"[\.\t\,“”‘’<>\*\?\!\"\[\]\@\':;\(\)\./&]", " ", cleaner_text, 0, 0).split(" ")
-        advert_word_list = [word.lower() for word in cleaned_word_list 
-                            if word != ""]
-        return self.de_hyphen_non_coded_words(advert_word_list, 
-                                              translated_wordlists)
+        cleaned_word_list = re.sub(
+            u"[\.\t\,“”‘’<>\*\?\!\"\[\]\@':;\(\)\./&]", " ", cleaner_text, 0, 0
+        ).split(" ")
+        advert_word_list = [word.lower() for word in cleaned_word_list if word != ""]
+        return self.de_hyphen_non_coded_words(advert_word_list, translated_wordlists)
 
     def de_hyphen_non_coded_words(self, advert_word_list, translated_wordlists):
         for word in advert_word_list:
@@ -71,22 +74,30 @@ class JobAd(db.Model):
                     word_index = advert_word_list.index(word)
                     advert_word_list.remove(word)
                     split_words = word.split("-")
-                    advert_word_list = (advert_word_list[:word_index]
-                        + split_words + advert_word_list[word_index:])
+                    advert_word_list = (
+                        advert_word_list[:word_index]
+                        + split_words
+                        + advert_word_list[word_index:]
+                    )
         return advert_word_list
 
     def extract_coded_words(self, advert_word_list, translated_wordlists):
-        words, count = self.find_and_count_coded_words(advert_word_list,
-            translated_wordlists.masculine_coded_words)
+        words, count = self.find_and_count_coded_words(
+            advert_word_list, translated_wordlists.masculine_coded_words
+        )
         self.masculine_coded_words, self.masculine_word_count = words, count
-        words, count = self.find_and_count_coded_words(advert_word_list,
-            translated_wordlists.feminine_coded_words)
+        words, count = self.find_and_count_coded_words(
+            advert_word_list, translated_wordlists.feminine_coded_words
+        )
         self.feminine_coded_words, self.feminine_word_count = words, count
 
     def find_and_count_coded_words(self, advert_word_list, gendered_word_list):
-        gender_coded_words = [word for word in advert_word_list
+        gender_coded_words = [
+            word
+            for word in advert_word_list
             for coded_word in gendered_word_list
-            if word.startswith(coded_word)]
+            if word.startswith(coded_word)
+        ]
         return (",").join(gender_coded_words), len(gender_coded_words)
 
     def assess_coding(self):
@@ -135,44 +146,56 @@ class JobAd(db.Model):
 
     def provide_explanation(self):
         if self.coding == "feminine-coded":
-            return ("This job ad uses more words that are subtly coded as "
-                    "feminine than words that are subtly coded as masculine "
-                    "(according to the research). Fortunately, the research "
-                    "suggests this will have only a slight effect on how "
-                    "appealing the job is to men, and will encourage women "
-                    "applicants.")
-        elif self.coding == "strongly feminine-coded": 
-            return ("This job ad uses more words that are subtly coded as "
-                    "feminine than words that are subtly coded as masculine "
-                    "(according to the research). Fortunately, the research "
-                    "suggests this will have only a slight effect on how "
-                    "appealing the job is to men, and will encourage women "
-                    "applicants.")
+            return (
+                "This job ad uses more words that are subtly coded as "
+                "feminine than words that are subtly coded as masculine "
+                "(according to the research). Fortunately, the research "
+                "suggests this will have only a slight effect on how "
+                "appealing the job is to men, and will encourage women "
+                "applicants."
+            )
+        elif self.coding == "strongly feminine-coded":
+            return (
+                "This job ad uses more words that are subtly coded as "
+                "feminine than words that are subtly coded as masculine "
+                "(according to the research). Fortunately, the research "
+                "suggests this will have only a slight effect on how "
+                "appealing the job is to men, and will encourage women "
+                "applicants."
+            )
         elif self.coding == "masculine-coded":
-            return ("This job ad uses more words that are subtly coded as "
-                    "masculine than words that are subtly coded as feminine"
-                    "(according to the research). It risks putting women off "
-                    "applying, but will probably encourage men to apply.")
-        elif self.coding == "strongly masculine-coded": 
-            return ("This job ad uses more words that are subtly coded as "
-                    "masculine than words that are subtly coded as feminine "
-                    "(according to the research). It risks putting women off "
-                    "applying, but will probably encourage men to apply.")
-        elif self.coding == "empty": 
-            return ("This job ad doesn't use any words that are subtly coded "
-              "as masculine or feminine (according to the research). It "
-              "probably won't be off-putting to men or women applicants.")
-        elif self.coding == "neutral": 
-            return ("This job ad uses an equal number of words that are "
-              "subtly coded as masculine and feminine (according to the "
-              "research). It probably won't be off-putting to men or women "
-              "applicants.")
+            return (
+                "This job ad uses more words that are subtly coded as "
+                "masculine than words that are subtly coded as feminine"
+                "(according to the research). It risks putting women off "
+                "applying, but will probably encourage men to apply."
+            )
+        elif self.coding == "strongly masculine-coded":
+            return (
+                "This job ad uses more words that are subtly coded as "
+                "masculine than words that are subtly coded as feminine "
+                "(according to the research). It risks putting women off "
+                "applying, but will probably encourage men to apply."
+            )
+        elif self.coding == "empty":
+            return (
+                "This job ad doesn't use any words that are subtly coded "
+                "as masculine or feminine (according to the research). It "
+                "probably won't be off-putting to men or women applicants."
+            )
+        elif self.coding == "neutral":
+            return (
+                "This job ad uses an equal number of words that are "
+                "subtly coded as masculine and feminine (according to the "
+                "research). It probably won't be off-putting to men or women "
+                "applicants."
+            )
 
 
 class CodedWordCounter(db.Model):
     __tablename__ = "coded_word_counter"
     id = db.Column(db.Integer, primary_key=True)
-    ad_hash = db.Column(db.String(), db.ForeignKey('job_ad.hash'))
+    ad_hash = db.Column(db.String(), db.ForeignKey("job_ad.hash"))
     word = db.Column(db.Text)
     coding = db.Column(db.Text)
     count = db.Column(db.Integer)
@@ -187,8 +210,9 @@ class CodedWordCounter(db.Model):
 
     @classmethod
     def increment_or_create(cls, ad, word, coding):
-        existing_counter = cls.query.filter_by(ad_hash=ad.hash).filter_by(
-            word=word).first()
+        existing_counter = (
+            cls.query.filter_by(ad_hash=ad.hash).filter_by(word=word).first()
+        )
         if existing_counter:
             existing_counter.count += 1
             db.session.add(existing_counter)
@@ -203,28 +227,25 @@ class CodedWordCounter(db.Model):
         masc_words = ad.masculine_coded_words.split(",")
         masc_words = filter(None, masc_words)
         for word in masc_words:
-            cls.increment_or_create(ad, word, 'masculine')
+            cls.increment_or_create(ad, word, "masculine")
 
         fem_words = ad.feminine_coded_words.split(",")
         fem_words = filter(None, fem_words)
         for word in fem_words:
-            cls.increment_or_create(ad, word, 'feminine')
+            cls.increment_or_create(ad, word, "feminine")
 
 
 class TranslatedWordlist(object):
-    
     def __init__(self, language):
-        wordlists = importlib.import_module('.{0}'.format(language),
-                                            'app.wordlists')
+        wordlists = importlib.import_module(".{0}".format(language), "app.wordlists")
 
         self.masculine_coded_words = wordlists.masculine_coded_words
         self.feminine_coded_words = wordlists.feminine_coded_words
-        self.hyphenated_coded_words = [word for word in wordlists.feminine_coded_words if "-" in word] + [word for word in wordlists.masculine_coded_words if "-" in word]
+        self.hyphenated_coded_words = [
+            word for word in wordlists.feminine_coded_words if "-" in word
+        ] + [word for word in wordlists.masculine_coded_words if "-" in word]
 
     @classmethod
     def get_language_name_and_source(cls, language):
-        my_module = importlib.import_module('.{0}'.format(language),
-                                            'app.wordlists')
-        return (my_module.language_name,
-                my_module.language_code,
-                my_module.source)
+        my_module = importlib.import_module(".{0}".format(language), "app.wordlists")
+        return (my_module.language_name, my_module.language_code, my_module.source)
