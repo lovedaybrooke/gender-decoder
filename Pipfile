@@ -23,6 +23,7 @@ Werkzeug = "*"
 WTForms = "*"
 SQLAlchemy = "*"
 Tempita = "*"
+pymysql = "*"
 
 [requires]
 python_version = "3.7"

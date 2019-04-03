@@ -16,15 +16,15 @@ from app.wordlists import *
 
 
 class JobAd(db.Model):
-    hash = db.Column(db.String(), primary_key=True)
+    hash = db.Column(db.String(36), primary_key=True)
     date = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     ad_text = db.Column(db.Text)
-    language = db.Column(db.String(), default="en", nullable=True)
+    language = db.Column(db.String(2), default="en", nullable=True)
     masculine_word_count = db.Column(db.Integer, default=0)
     feminine_word_count = db.Column(db.Integer, default=0)
     masculine_coded_words = db.Column(db.Text)
     feminine_coded_words = db.Column(db.Text)
-    coding = db.Column(db.String())
+    coding = db.Column(db.String(24))
     coded_word_counter = db.relationship("CodedWordCounter", backref="job_ad")
 
     def __init__(self, ad_text, language="en"):
@@ -195,7 +195,7 @@ class JobAd(db.Model):
 class CodedWordCounter(db.Model):
     __tablename__ = "coded_word_counter"
     id = db.Column(db.Integer, primary_key=True)
-    ad_hash = db.Column(db.String(), db.ForeignKey("job_ad.hash"))
+    ad_hash = db.Column(db.String(36), db.ForeignKey("job_ad.hash"))
     word = db.Column(db.Text)
     coding = db.Column(db.Text)
     count = db.Column(db.Integer)
