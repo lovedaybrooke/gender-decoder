@@ -51,7 +51,7 @@ feminine_coded_words = [
     "inclusive",
     "yield",
     "share",
-    "sharin"
+    "sharing"
 ]
 
 masculine_coded_words = [
