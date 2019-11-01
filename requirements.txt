@@ -8,7 +8,7 @@ itsdangerous==0.24
 Jinja2==2.8
 MarkupSafe==0.23
 pep8==1.7.0
-Werkzeug==0.11.11
+Werkzeug==0.15.3
 WTForms==2.1
 decorator==4.0.10
 psycopg2==2.7
@@ -17,5 +17,5 @@ SQLAlchemy==1.1.4
 sqlalchemy-migrate==0.10.0
 sqlparse==0.2.2
 Tempita==0.5.2
-Werkzeug==0.11.11
+Werkzeug==0.15.3
 WTForms==2.1
