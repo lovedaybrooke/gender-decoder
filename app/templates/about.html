@@ -1,52 +1,33 @@
 {% extends "basic-layout.html" %}
 
     {% block maincontent %}
-        <h2>About this tool</h2>
-        <p>This tool was inspired by a research paper written by Danielle Gaucher, Justin Friesen, and Aaron C. Kay back in 2011, called <a href="/static/documents/Gaucher-Friesen-Kay-JPSP-Gendered-Wording-in-Job-ads.pdf">Evidence That Gendered Wording in Job Advertisements Exists and Sustains Gender Inequality</a> (Journal of Personality and Social Psychology, July 2011, Vol 101(1), p109-28).</p> 
-        <p>In this paper the researchers showed job adverts which included different kinds of gender-coded language to men and women and recorded how appealing the jobs seemed and how much the participants felt that they 'belonged' in that occupation. No non-binary people were included in this research, and the research didn't touch on non-binary-coded words.</p>
-        <p>Their results showed that women felt that job adverts with masculine-coded language were less appealing and that they belonged less in those occupations. For men, feminine-coded adverts were only slightly less appealing and there was no effect on how much the men felt they belonged in those roles.</p>
-        <p>Below are the full lists of words that this research considered masculine- and feminine-coded. This tool checks job adverts for the appearance of any of these words, then calculates the relative proportion of masculine-coded and feminine-coded words to reach an overall verdict on the gender-coding of the advert. Some words have been reduced to a 'stem' to cover a range of noun, verb and adjective variants; for instance "compet" covers "compete", "competetive" and "competition".</p>
-        <p>I don't totally agree with all the entries in these wordlists. I'd be interested in hearing your thoughts on what's in the lists and shouldn't be, or what's not included that should be. Let me know via Twitter <a href="http://www.twitter.com/lovedaybrooke">@LovedayBrooke</a>, or a <a href="https://github.com/lovedaybrooke/gender-decoder">pull request</a>.</p>
-        <p><strong>If you have a question that I haven't just answered, check out the <a href="/about#faq">FAQ below</a> or get in touch @lovedaybrooke on Twitter.</strong></p>
-        <div id="masculine">
-            <h3>Masculine-coded words</h3>
-            <ul>
-                {% for word in masculine_coded_words %}
-                <li>{{ word }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div id="feminine">
-            <h3>Feminine-coded words</h3>
-            <ul>
-                {% for word in feminine_coded_words %}
-                <li>{{ word }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div id="faq">
-            <h2>Frequently asked questions</h2>
-            <h3 id="faq1">Are you saying women can't be active/innovative/driven? Do you believe men aren't polite/cooperative/kind?</h3>
-            <p>Not at all! The words listed above have come from academic research into language that is 'coded' as masculine and feminine, reflecting existing societal bias about these genders. That means that we associate each gender with those qualities, often at an unconscious level. For instance, we stereotype women as being more polite/cooperative/kind than men, and stereotype men as being more active/innovative/driven than women. Of course, we all know that people of any gender can possess any of those properties.<br><a class="reference" href="/about#faq1">Link to this FAQ</a></p>
-
-            <h3 id="faq2">What evidence do you have for the claim that the wording of job ads has any effect on the people reading them?</h3>
-            <p>The evidence underlying this tool comes from a research paper written by written by Danielle Gaucher, Justin Friesen, and Aaron C. Kay, called Evidence That Gendered Wording in Job Advertisements Exists and Sustains Gender Inequality. It was published in theJournal of Personality and Social Psychology, July 2011, Vol 101(1), p109-28.<br><a class="reference" href="/about#faq2">Link to this FAQ</a></p>
-
-            <h3 id="faq3">Has this tool been approved by the authors of the research?</h3>
-            <p>Nope. They have no involvement with this, but I sincerely hope they're happy it exists.<br><a class="reference" href="/about#faq3">Link to this FAQ</a></p>
-
-            <h3 id="faq5">What happens to the job ads that I check using this tool?</h3>
-            <p>When you paste in your job ad and hit the "check" button, the job ad is analysed for coded language, and then the full text of the ad and the analysis are saved to a database. I'm the only person who has access to this database.</p>
-            <p>Data about your job ad is only stored in the database so that you can have a link to share with other people. The ads aren't posted publicly anywhere else, I don't publish a list of the share links, and I don't share the ad text or links with anyone else. I occasionally do a little data analysis, to see which coded words come up most often. But that's it.</p>
-            <p>If you're not comfortable having your data stored and used this way, get in touch with me on Twitter @lovedaybrooke and I'll remove it from the database.<br><a  class="reference" href="/about#faq5">Link to this FAQ</a></p>
-
-            <h3 id="faq4">Can I use this on other things that aren't job ads?</h3>
-            <p>It's totally possible to use Gender Decoder on any text you like. However, the research on which it's based only examined job adverts, so there isn't any hard evidence (that I'm aware of) that gender-coded language has any effect in other domains. It seems like a reasonable assumption that there would be effects in some other domains; we just don't know for sure.<br><a class="reference" href="/about#faq4">Link to this FAQ</a></p>
-            
-
-            <h3 id="faq6">Is this tool available in other languages?</h3>
-            <p>It can be, but there's a big caveat. The original research was conducted only in English and so we only have evidence that these particular English words are masculine/feminine coded, only for people reading in English. It's reasonable to assume that there will be similar affects in other languages, but we don't have any hard evidence of this – or, rather, I don't know about any evidence.</p>
-            <p>However, if you would like to see Gender Decoder working in another language, and you're a native speaker of that language, I'd love your help making this happen. What I'd need from you is a translation of the word lists in English (See here for the <a href="/about#masculine">masculine wordlist</a>, <a href="/about#masculine">feminine wordlist</a>). Get in touch with me on Twitter @lovedaybrooke to let me know you're interested in helping with this.<br><a class="reference" href="/about#faq6">Link to this FAQ</a></p>
-
-        </div>
+        <main class="grid-container">
+            <div id="intro" class="grid-60">
+                <h2>About this tool</h2>
+                <p>This tool was inspired by a research paper written by Danielle Gaucher, Justin Friesen, and Aaron C. Kay back in 2011, called <a href="/static/documents/Gaucher-Friesen-Kay-JPSP-Gendered-Wording-in-Job-ads.pdf">Evidence That Gendered Wording in Job Advertisements Exists and Sustains Gender Inequality</a> (Journal of Personality and Social Psychology, July 2011, Vol 101(1), p109-28).</p> 
+                <p>In this paper the researchers showed job adverts which included different kinds of gender-coded language to men and women and recorded how appealing the jobs seemed and how much the participants felt that they 'belonged' in that occupation. No non-binary people were included in this research, and the research didn't touch on non-binary-coded words.</p>
+                <p>Their results showed that women felt that job adverts with masculine-coded language were less appealing and that they belonged less in those occupations. For men, feminine-coded adverts were only slightly less appealing and there was no effect on how much the men felt they belonged in those roles.</p>
+                <p>To the right are the full lists of words that this research considered masculine- and feminine-coded. This tool checks job adverts for the appearance of any of these words, then calculates the relative proportion of masculine-coded and feminine-coded words to reach an overall verdict on the gender-coding of the advert. Some words have been reduced to a 'stem' to cover a range of noun, verb and adjective variants; for instance "compet" covers "compete", "competetive" and "competition".</p>
+                <p>If you have a question that I haven't just answered, check out the <a href="/faq">FAQ</a> or get in touch with me on <a href="http://www.twitter.com/lovedaybrooke">Twitter</a>.</p>
+                <p class="reference">Thanks to Stephen Shearman whose <a href="http://www.eremedia.com/ere/you-dont-know-it-but-women-see-gender-bias-in-your-job-postings/">blog post</a> initially introduced me to the research; and to Made by Many's Isaac Pinnock whose <a href="http://madebymany.com/blog/can-a-few-well-chosen-words-improve-inclusivity">blog post</a> gave me the final nudge towards building this.</p>
+            </div>
+            <div id="wordlists" class="grid-40">
+                <div id="masculine">
+                    <h3>Masculine-coded words</h3>
+                    <ul>
+                        {% for word in masculine_coded_words %}
+                        <li>{{ word }}-</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div id="feminine">
+                    <h3>Feminine-coded words</h3>
+                    <ul>
+                        {% for word in feminine_coded_words %}
+                        <li>{{ word }}-</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </main>
     {% endblock %}

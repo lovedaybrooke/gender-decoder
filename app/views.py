@@ -24,17 +24,25 @@ def about():
         masculine_coded_words=masculine_coded_words,
         feminine_coded_words=feminine_coded_words)
 
+@app.route('/faq')
+def faq():
+    return render_template('faq.html')
+
 
 @app.route('/results/<ad_hash>')
 def results(ad_hash):
     job_ad = JobAd.query.get_or_404(ad_hash)
+    form = JobAdForm()
+    form.texttotest.data = job_ad.ad_text
     masculine_coded_words, feminine_coded_words = job_ad.list_words()
     return render_template('results.html', job_ad=job_ad,
         masculine_coded_words=masculine_coded_words,
         feminine_coded_words=feminine_coded_words,
-        explanation=explanations[job_ad.coding])
+        explanation=explanations[job_ad.coding],
+        form=form)
 
 
 @app.errorhandler(404)
 def page_not_found(error):
-    return render_template('404.html'), 404
+    form = JobAdForm()
+    return render_template('404.html', form=form), 404

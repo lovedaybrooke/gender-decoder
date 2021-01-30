@@ -1,9 +1,11 @@
 <html>
   <head>
     <title>Gender Decoder: find subtle bias in job ads</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/static/stylesheets/unsemantic-grid-responsive.css" />
     <link type="text/css" rel="stylesheet" href="/static/stylesheets/main.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
-    <link type="text/css"  rel="stylesheet" media="only screen and (max-device-width: 400px)" href="/static/stylesheets/phone.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -19,22 +21,21 @@
   </head>
   <body>
 
-  <div class="header">
-    <h1><a href="/">Gender Decoder for Job Ads</a></h1>
+  <div class="header grid-container">
+    <div class="grid-70 mobile-grid-100">
+      <h1><a href="/">Gender Decoder</a></h1>
+    </div>
+    <div class="grid-30 mobile-grid-100">
+        <div class="nav">
+        <a href="/about">What is this?</a>
+        <a href="/">Check an ad</a>
+        <a href="/faq">FAQ</a>
+    </div>
   </div>
+</div>
 
-  <div class="main-content">
     {% block maincontent %}
     {% endblock %}
-  </div>
-  
-  <div class="footer">
-    <hr />
-    <p id="research">This tool uses the original list of gender-coded words from the research paper written by Danielle Gaucher, Justin Friesen, and Aaron C. Kay: <a href="/static/documents/Gaucher-Friesen-Kay-JPSP-Gendered-Wording-in-Job-ads.pdf">Evidence That Gendered Wording in Job Advertisements Exists and Sustains Gender Inequality</a> (Journal of Personality and Social Psychology, July 2011, Vol 101(1), p109-28).</p>
-    <p>The code is on <a href="https://github.com/lovedaybrooke/gender-decoder">GitHub</a>, and I'd welcome any suggestions about the <a href="/about#masculine">wordlists</a> it uses, by pull request or tweet.</p>
-    <p>Thanks to Stephen Shearman whose <a href="http://www.eremedia.com/ere/you-dont-know-it-but-women-see-gender-bias-in-your-job-postings/">blog post</a> initially introduced me to the research; and to Made by Many's Isaac Pinnock whose <a href="http://madebymany.com/blog/can-a-few-well-chosen-words-improve-inclusivity">blog post</a> gave me the final nudge towards building this.</p>
-    <p>By <a href="http://www.katmatfield.com">Kat Matfield</a> / <a href="http://www.twitter.com/lovedaybrooke">@LovedayBrooke</a></p>
-  </div>
 
 
   </body>

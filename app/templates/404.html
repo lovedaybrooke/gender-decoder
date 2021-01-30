@@ -1,6 +1,18 @@
 {% extends "basic-layout.html" %}
 
     {% block maincontent %}
-        <h2>Page not found</h2>
-        <p style="padding-bottom: 50px">Sorry, we don't seem to have a record of that job advert. Why not <a href="/">test another ad</a>?
+        <main class="grid-container">
+        <div id="error" class="grid-40">
+            <h2>Page not found</h2>
+        <p style="padding-bottom: 50px">Sorry, we don't seem to have a record of that job advert. Why not test another ad?
+        </div>
+        <div id="form" class="grid-60">
+            <form action="/" method="post" name="jobadform">
+                {{ form.hidden_tag() }}
+                {{ form.texttotest(rows="20", placeholder="Paste your ad text here")|safe }}
+                <input type="submit" value="Check this ad" class="button"/>
+            </form>
+        </div>
+    </main>
+        
     {% endblock %}</p>
