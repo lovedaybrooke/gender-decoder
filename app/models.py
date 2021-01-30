@@ -79,8 +79,10 @@ class JobAd(db.Model):
 
     def find_and_count_coded_words(self, advert_word_list, gendered_word_list):
         gender_coded_words = [word for word in advert_word_list
-            for coded_word in gendered_word_list
-            if word.startswith(coded_word)]
+            for coded_word in gendered_word_list 
+            if (word.startswith(coded_word) and word not in non_coded_exceptions)]
+        print(gender_coded_words)
+        print(len(gender_coded_words))
         return (",").join(gender_coded_words), len(gender_coded_words)
 
     def assess_coding(self):
