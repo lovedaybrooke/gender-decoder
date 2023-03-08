@@ -9,7 +9,7 @@ Flask-WTF==1.1.1
 gunicorn==20.1.0
 itsdangerous==0.24
 Jinja2==2.11.3
-Mako==1.1.4
+Mako==1.2.2
 MarkupSafe==0.23
 pbr==1.10.0
 pep8==1.7.0
