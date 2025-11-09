@@ -108,6 +108,7 @@ masculine_coded_words = [
     "selfconfiden",
     "selfrelian",
     "selfsufficien",
+    "strong",
     "stubborn",
     "superior",
     "unreasonab"
