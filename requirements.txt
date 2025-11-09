@@ -20,7 +20,7 @@ python-editor==1.0.4
 six==1.16.0
 SQLAlchemy==2.0.5.post1
 sqlalchemy-migrate==0.13.0
-sqlparse==0.4.3
+sqlparse==0.4.4
 Tempita==0.5.2
 typing_extensions==4.5.0
 Werkzeug==2.2.3
